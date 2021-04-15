@@ -4,7 +4,7 @@ import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 const CartWidget = () => {
 
     return(
-        <ShoppingCartRoundedIcon/>
+        <ShoppingCartRoundedIcon style={{color:'#46515C'}}/>
     )
 
 }
