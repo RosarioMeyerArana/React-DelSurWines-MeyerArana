@@ -1,0 +1,19 @@
+.navbar-item{
+    margin-right: 2rem;
+}
+
+.navbar-item-container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar{
+    background-color: #efefef;
+    padding-bottom: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
