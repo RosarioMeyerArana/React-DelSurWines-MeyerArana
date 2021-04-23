@@ -4,7 +4,7 @@ import ItemListContainer from './Container/ItemListContainer';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-light">
       <NavBar/>
       <ItemListContainer/>
     </div>
