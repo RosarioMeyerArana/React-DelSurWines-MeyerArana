@@ -1,0 +1,25 @@
+.cantidad{
+    margin-left: 10px;
+    margin-right: 10px;
+   align-items: center;
+}
+
+.btn-modifica{
+    border-radius: 30px;
+    background-color: transparent;
+    /* border: 1px solid red;
+    color: red;
+    width: 2rem;
+    height: 2rem; */
+}
+
+.enStock{
+    margin-bottom: .7rem;
+    font-style: italic;
+    font-size: 13px;
+}
+
+.container-counter{
+    margin-bottom: 1.3rem;
+    align-items: center;
+}
