@@ -5,19 +5,22 @@ import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from '../../Images/logo.png';
+import {NavLink} from 'react-router-dom';
 
 const NavBar = () => {
 
     return(
         <header>
             <Navbar bg="light" variant="light" className="shadow px-5">
-            <div className="container-logo">
+            <NavLink to={'/'}  className="container-logo">
             <img className="logo" src={logo} alt="" />
-            </div>
+            </NavLink>
             <Nav className="mr-auto">
-                <Nav.Link href="#home" className="navbar-item">Nosotros</Nav.Link>
-                <Nav.Link href="#features" className="navbar-item" >Contacto</Nav.Link>
-                <Nav.Link href="#pricing" className="navbar-item" >Shop</Nav.Link>
+                <NavLink to='/Malbec' activeClassName='claseActiva' className="navbar-item">Malbec</NavLink>
+                <NavLink to='/Merlot' activeClassName='claseActiva' className="navbar-item" >Merlot</NavLink>
+                <NavLink to='/Bonarda' activeClassName='claseActiva' className="navbar-item">Bonarda</NavLink>
+                <NavLink to='/Cabernet' activeClassName='claseActiva' className="navbar-item">Cabernet</NavLink>
+                <NavLink to='/Chardonnay' activeClassName='claseActiva' className="navbar-item">Chardonnay</NavLink>
             </Nav>
             <CartWidget/>
             </Navbar>

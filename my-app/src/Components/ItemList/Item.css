@@ -8,3 +8,8 @@
 .card-varietal{
 margin-top: 0;
 }
+
+p{
+    text-decoration: none;
+    color: black;
+}

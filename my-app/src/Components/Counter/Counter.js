@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import css from '../Counter/Counter.css';
 
 const Counter = ({stock}) => {
     const [cantidad , setCantidad] = useState(0)
-    const [enStock, setEnStock] = useState(stock)
+    const [enStock, setEnStock] = useState(0)
+
+    useEffect(()=>{
+        setEnStock(stock)
+    }, [stock])
 
 
     const suma = () => {

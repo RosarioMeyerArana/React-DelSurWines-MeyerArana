@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import ItemList from '../Components/ItemList/ItemList';
+import ItemList from '../../Components/ItemList/ItemList';
+import {useParams} from 'react-router-dom'
 
 
 const ItemListContainer = () => {
     const [vinos, setVinos] = useState([])
+
+    const {varietal} = useParams()
 
     useEffect(()=> { 
 
@@ -11,7 +14,7 @@ const ItemListContainer = () => {
                     { id: 1,
                         nombre: "Sapo de Otro Pozo",
                         bodega: "Mosquita Muerta",
-                        varietal: "Blend",
+                        varietal: "Merlot",
                         precio: 1200,
                         stock: 10,
                         img:'https://i.postimg.cc/kXcB5nnK/1.png'
@@ -27,7 +30,7 @@ const ItemListContainer = () => {
                 { id: 3,
                         nombre: "59N",
                         bodega: "Kalos",
-                        varietal: "Cabernet Franc",
+                        varietal: "Cabernet",
                         precio: 700,
                         stock: 10,
                         img:'https://i.postimg.cc/kXcB5nnK/1.png'
@@ -54,8 +57,10 @@ const ItemListContainer = () => {
             let listaItem = new Promise((resolve, reject) => {
 
                 setTimeout(()=>{
-                    resolve(wines)
+                   resolve(varietal ? wines.filter((item) => item.varietal == varietal) : wines)
                 },2000)
+
+
             })
 
             listaItem.then((res)=>{
@@ -64,7 +69,7 @@ const ItemListContainer = () => {
 
             listaItem.catch(() => console.log("OCURRIO UN ERROR"))
 
-        },[])
+        },[varietal])
 
 
     return(

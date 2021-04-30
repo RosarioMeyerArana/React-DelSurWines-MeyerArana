@@ -16,6 +16,11 @@
     width: 70%;
 }
 
+
+.claseActiva{
+    color: blueviolet !important;
+}
+
 /* .navbar-item-container{
     display: flex;
     justify-content: flex-start;
@@ -24,9 +29,15 @@
     padding-left: 0;
     padding-right: 12rem ;
     color: #46515C;
-
 } */
 
 .navbar-item{
     margin-right: 2rem;
+    color: black;
+    font-size: .8rem;
+}
+
+.navbar-item:hover{
+    color: blueviolet !important;
+
 }
