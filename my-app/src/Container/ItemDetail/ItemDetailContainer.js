@@ -113,7 +113,7 @@ const ItemDetailContainer = () => {
                             {/* <Button variant="outlined" color="info">
                                 Agregar al Carrito
                             </Button> */}
-                        { show && <AlertCart cantidad={cantidad} nombre={item.nombre} />}
+                        <AlertCart cantidad={cantidad} nombre={item.nombre} />
                     </div>
              </div> 
              : 
