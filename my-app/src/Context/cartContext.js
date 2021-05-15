@@ -6,7 +6,6 @@ export const CartContext = React.createContext([])
 
 export const useCartContext = () => useContext(CartContext);
 
-
 export const CartProvider = ({children}) => {
 
 
@@ -15,6 +14,7 @@ export const CartProvider = ({children}) => {
 
     const [show, setShow] = useState(false)
 
+    const [count, setCount] = useState(0)
 
     // PRECIO TOTAL DEL CARRITO 
     const [total , setTotal] = useState(0)
