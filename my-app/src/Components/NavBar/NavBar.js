@@ -22,7 +22,9 @@ const NavBar = () => {
                 <NavLink to='/Cabernet' activeClassName='claseActiva' className="navbar-item">Cabernet</NavLink>
                 <NavLink to='/Chardonnay' activeClassName='claseActiva' className="navbar-item">Chardonnay</NavLink>
             </Nav>
-            <CartWidget/>
+            <NavLink to='/Cart' activeClassName='claseActiva' className='navbar-item'>
+                <CartWidget/> 
+            </NavLink> 
             </Navbar>
         </header>
     )

@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ItemList from '../../Components/ItemList/ItemList';
 import {useParams} from 'react-router-dom'
+import {CartContext} from '../../Context/cartContext'
 
 
 const ItemListContainer = () => {
     const [vinos, setVinos] = useState([])
 
     const {varietal} = useParams()
+
+    const {addToCart} = useContext(CartContext)
 
     useEffect(()=> { 
 

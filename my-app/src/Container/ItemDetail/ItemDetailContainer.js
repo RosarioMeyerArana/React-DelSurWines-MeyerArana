@@ -1,11 +1,38 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState, useEffect} from 'react';
 import ItemDetail from '../../Components/ItemDetail/ItemDetail';
 import {useParams} from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner'
+import {useCartContext} from '../../Context/cartContext'
+import CounterContainer from '../../Container/Counter/CounterContainer'
+import {Button} from 'react-bootstrap'
+import AlertCart from '../../Components/Alert/Alert'
 
 
 const ItemDetailContainer = () => {
+
+     const [open, setOpen] = React.useState(false);
+
+     const handleClickOpen = () => {
+       setOpen(true);
+     };
+    
     const [item, setItem] = useState({})
+
+    const {addToCart, show, handleShow} = useCartContext()
+
+    const [cantidad , setCantidad] = useState(0)
+    const [enStock, setEnStock] = useState(0)
+
+
+   const onAdd = (cantidad) => {
+       addToCart(item,cantidad)
+    }
+
+
+     const agregarCarrito = () => {
+         addToCart(item, cantidad)
+         console.log(cantidad)
+     }
 
     const {id} = useParams() 
 
@@ -13,6 +40,7 @@ const ItemDetailContainer = () => {
 
     useEffect(() => {
 
+    console.log(cantidad)
     const productos = [{ id: 1,
         nombre: "Sapo de Otro Pozo",
         bodega: "Mosquita Muerta",
@@ -20,7 +48,7 @@ const ItemDetailContainer = () => {
         precio: 1200,
         stock: 10,
         img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. Con unos minutos en copa logra un perfil balsámico y elegante con cierto tono herbal. Ataque amplio y envolvente. Fluye con buena estructura hacia un medio de boca carnoso y frutal. Taninos firmes que sellan intensidad y un final prolongado.'
+        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
     },
     { id: 2,
     nombre: "Estiba de Familia",
@@ -29,8 +57,7 @@ const ItemDetailContainer = () => {
     precio: 500,
     stock: 10,
     img:'https://i.postimg.cc/kXcB5nnK/1.png',
-    notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. Con unos minutos en copa logra un perfil balsámico y elegante con cierto tono herbal. Ataque amplio y envolvente. Fluye con buena estructura hacia un medio de boca carnoso y frutal. Taninos firmes que sellan intensidad y un final prolongado.'
-
+    notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
 },
 { id: 3,
         nombre: "59N",
@@ -39,8 +66,7 @@ const ItemDetailContainer = () => {
         precio: 700,
         stock: 10,
         img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. Con unos minutos en copa logra un perfil balsámico y elegante con cierto tono herbal. Ataque amplio y envolvente. Fluye con buena estructura hacia un medio de boca carnoso y frutal. Taninos firmes que sellan intensidad y un final prolongado.'
-
+        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
     },
     { id: 4,
         nombre: "13Cles",
@@ -49,8 +75,7 @@ const ItemDetailContainer = () => {
         precio: 650,
         stock: 10,
         img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. Con unos minutos en copa logra un perfil balsámico y elegante con cierto tono herbal. Ataque amplio y envolvente. Fluye con buena estructura hacia un medio de boca carnoso y frutal. Taninos firmes que sellan intensidad y un final prolongado.'
-
+        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
     },
     { id: 5,
         nombre: "Tomero",
@@ -59,8 +84,7 @@ const ItemDetailContainer = () => {
         precio: 600,
         stock: 10,
         img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. Con unos minutos en copa logra un perfil balsámico y elegante con cierto tono herbal. Ataque amplio y envolvente. Fluye con buena estructura hacia un medio de boca carnoso y frutal. Taninos firmes que sellan intensidad y un final prolongado.'
-    },]
+        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '    },]
 
 
     const buscoItems = new Promise((resolve, reject) => {
@@ -71,6 +95,7 @@ const ItemDetailContainer = () => {
 
         buscoItems.then((res) => {    
                 setItem(res)
+                setEnStock(res.stock)
             })
     
             .catch(() => {
@@ -79,15 +104,27 @@ const ItemDetailContainer = () => {
 
     },[id])
 
-   
 
     return (
         <div>
-            {item ? <ItemDetail nombre={item.nombre} bodega={item.bodega} 
-             varietal={item.varietal} precio={item.precio} stock={item.stock} img={item.img} notas={item.notas} /> : <Spinner animation="border" variant="info" /> }
+            {item ? 
+            <div className='d-flex justify-content-center row container'>
+                <div className='col-4 mt-5'><img className="detailImg" src={item.img}/></div>
+                    <div className='col-6'>
+                            <ItemDetail  nombre={item.nombre} bodega={item.bodega} 
+                        varietal={item.varietal} precio={item.precio} stock={item.stock} img={item.img} notas={item.notas} />
+                            <CounterContainer onAdd={onAdd} stock={item.stock} />
+                            {/* <Button onClick={agregarCarrito} variant="info" className="mb-4">Agregar al Carrito</Button> */}
+                            {/* <Button variant="outlined" color="info">
+                                Agregar al Carrito
+                            </Button> */}
+                        <AlertCart cantidad={cantidad} nombre={item.nombre} />
+                    </div>
+             </div> 
+             : 
+             < Spinner animation="border" variant="info" /> }
         </div>
     )
-
 }
 
 export default ItemDetailContainer

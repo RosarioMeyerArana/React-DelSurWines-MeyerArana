@@ -1,32 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import css from '../Counter/Counter.css';
+import {Button} from 'react-bootstrap';
 
-const Counter = ({stock}) => {
-    const [cantidad , setCantidad] = useState(0)
-    const [enStock, setEnStock] = useState(0)
+const Counter = ({enStock, resta, suma, cantidad, onAdd}) => {
 
-    useEffect(()=>{
-        setEnStock(stock)
-    }, [stock])
-
-
-    const suma = () => {
-        setCantidad(cantidad + 1)
-        setEnStock(enStock - 1)
-    };
-
-    const resta = () => {
-        setCantidad(cantidad - 1)
-        setEnStock(enStock + 1)
-    };
 
     return(
         <React.Fragment>
-            <p className="enStock">{enStock} en stock</p>  
-            <div className="container-counter d-flex justify-content-center align-items-baseline">
-                <button className="btn-modifica btn-outline-info btn" onClick={resta} disabled={cantidad === 0}>-</button>
-                <p className="cantidad">{cantidad}</p>
-                <button className="btn-modifica btn-outline-info btn" onClick={suma} disabled={enStock === 0}>+</button>
+            <div className='text-center'>
+                <p className="enStock">{enStock} en stock</p>  
+                <div className="container-counter d-flex justify-content-center align-items-baseline">
+                    <Button variant="outline-info" className="btn-modifica" onClick={resta} disabled={cantidad === 0}>-</Button>
+                    <p className="cantidad">{cantidad}</p>
+                    <Button variant="outline-info" className="btn-modifica" onClick={suma} disabled={enStock === 0}>+</Button>
+                </div>
+                <Button variant="outlined" color="info" onClick={() => onAdd(cantidad)}>
+                Agregar al Carrito
+                </Button>
             </div>
         </React.Fragment>
     )
