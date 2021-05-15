@@ -1,0 +1,11 @@
+.itemCarrito{
+    list-style: none !important;
+}
+
+li{
+    list-style: none !important;
+}
+
+.botonEliminar{
+    margin-left: 1rem
+}

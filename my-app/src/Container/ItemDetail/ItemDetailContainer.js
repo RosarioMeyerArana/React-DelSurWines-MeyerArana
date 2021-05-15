@@ -9,16 +9,10 @@ import AlertCart from '../../Components/Alert/Alert'
 
 
 const ItemDetailContainer = () => {
-
-     const [open, setOpen] = React.useState(false);
-
-     const handleClickOpen = () => {
-       setOpen(true);
-     };
     
     const [item, setItem] = useState({})
 
-    const {addToCart, show, handleShow} = useCartContext()
+    const {addToCart, show} = useCartContext()
 
     const [cantidad , setCantidad] = useState(0)
     const [enStock, setEnStock] = useState(0)
@@ -26,13 +20,14 @@ const ItemDetailContainer = () => {
 
    const onAdd = (cantidad) => {
        addToCart(item,cantidad)
+       console.log(show)
     }
 
-
-     const agregarCarrito = () => {
-         addToCart(item, cantidad)
-         console.log(cantidad)
-     }
+    //  const agregarCarrito = () => {
+    //      addToCart(item, cantidad)
+    //      console.log(cantidad)
+         
+    //  }
 
     const {id} = useParams() 
 
@@ -118,7 +113,7 @@ const ItemDetailContainer = () => {
                             {/* <Button variant="outlined" color="info">
                                 Agregar al Carrito
                             </Button> */}
-                        <AlertCart cantidad={cantidad} nombre={item.nombre} />
+                        { show && <AlertCart cantidad={cantidad} nombre={item.nombre} />}
                     </div>
              </div> 
              : 

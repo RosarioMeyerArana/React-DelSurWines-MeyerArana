@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Counter from '../../Components/Counter/Counter'
+import { useCartContext } from '../../Context/cartContext'
 
 
 
@@ -7,6 +8,7 @@ const CounterContainer = ({stock, onAdd}) => {
 
     const [cantidad , setCantidad] = useState(0)
     const [enStock, setEnStock] = useState(0)
+
 
     useEffect(()=>{
         setEnStock(stock)

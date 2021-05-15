@@ -62,14 +62,15 @@ export const CartProvider = ({children}) => {
 
         if(isInCart(item.id)){
             tomoCantidad(item,cantidad)
-            console.log('ifis ' + item)
+            console.log('if is ' + item)
           }
           else{
               setCart([...cart, {...item, cantidad}]);
               console.log(cantidad)
           }
         
-       setShow(!show)
+       setShow(true)
+       console.log('show es:' + show)
     }
 
 
@@ -85,9 +86,9 @@ export const CartProvider = ({children}) => {
     }
 
 
-    const handleShow = () => {
-        setShow(!show)
-    }
+    // const handleShow = () => {
+    //     setShow(!show)
+    // }
 
     return(
         <CartContext.Provider value={{cart, addToCart, removeItem, clearCart, total}} >

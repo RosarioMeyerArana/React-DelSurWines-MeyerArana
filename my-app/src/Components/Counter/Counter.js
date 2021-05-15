@@ -1,9 +1,9 @@
 import React from 'react';
 import css from '../Counter/Counter.css';
 import {Button} from 'react-bootstrap';
+import {useCartContext} from '../../Context/cartContext'
 
 const Counter = ({enStock, resta, suma, cantidad, onAdd}) => {
-
 
     return(
         <React.Fragment>
