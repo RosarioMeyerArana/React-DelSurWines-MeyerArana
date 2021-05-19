@@ -1,4 +1,4 @@
-import firebase from 'firebase/firebase-app'
+import firebase from 'firebase/app'
 import 'firebase/firestore'
 
 const app = firebase.initializeApp(
@@ -12,6 +12,6 @@ const app = firebase.initializeApp(
       }
 )
 
-export const getFirebase = () => {
-    
-}
+export const getFirebase = () => app
+
+export const getFirestore = () => firebase.firestore(app)

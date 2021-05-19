@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {useCartContext} from '../../Context/cartContext'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
@@ -10,6 +10,7 @@ const Cart = () => {
 
     const {cart, clearCart, removeItem} = useCartContext()
     console.log(cart)
+
 
     return(
         <div className='mt-5 container' >

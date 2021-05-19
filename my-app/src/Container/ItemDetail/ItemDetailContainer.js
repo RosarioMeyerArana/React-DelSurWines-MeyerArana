@@ -4,13 +4,15 @@ import {useParams} from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner'
 import {useCartContext} from '../../Context/cartContext'
 import CounterContainer from '../../Container/Counter/CounterContainer'
-import {Button} from 'react-bootstrap'
 import AlertCart from '../../Components/Alert/Alert'
+import {getFirestore} from '../../firebase'
 
 
 const ItemDetailContainer = () => {
     
     const [item, setItem] = useState({})
+
+    const [loading, setLoading] = useState(false)
 
     const {addToCart, show} = useCartContext()
 
@@ -20,84 +22,31 @@ const ItemDetailContainer = () => {
 
    const onAdd = (cantidad) => {
        addToCart(item,cantidad)
-       console.log(show)
     }
 
-    //  const agregarCarrito = () => {
-    //      addToCart(item, cantidad)
-    //      console.log(cantidad)
-         
-    //  }
 
     const {id} = useParams() 
 
     const {varietal} = useParams()
 
-    useEffect(() => {
+    useEffect(()=> { 
+        setLoading(true)
 
-    console.log(cantidad)
-    const productos = [{ id: 1,
-        nombre: "Sapo de Otro Pozo",
-        bodega: "Mosquita Muerta",
-        varietal: "Blend",
-        precio: 1200,
-        stock: 10,
-        img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
-    },
-    { id: 2,
-    nombre: "Estiba de Familia",
-    bodega: "Aristides",
-    varietal: "Bonarda",
-    precio: 500,
-    stock: 10,
-    img:'https://i.postimg.cc/kXcB5nnK/1.png',
-    notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
-},
-{ id: 3,
-        nombre: "59N",
-        bodega: "Kalos",
-        varietal: "Cabernet Franc",
-        precio: 700,
-        stock: 10,
-        img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
-    },
-    { id: 4,
-        nombre: "13Cles",
-        bodega: "13Cles",
-        varietal: "Malbec",
-        precio: 650,
-        stock: 10,
-        img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '
-    },
-    { id: 5,
-        nombre: "Tomero",
-        bodega: "Vistalba",
-        varietal: "Chardonnay",
-        precio: 600,
-        stock: 10,
-        img:'https://i.postimg.cc/kXcB5nnK/1.png',
-        notas: 'Rubí profundo con tonos violáceos brillantes. Despliega un compleja aromática frutal que recuerda a ciruelas, cerezas, moras y los arándanos junto a tonos especiados y tostado. '    },]
+        const db = getFirestore()
+        const itemsCollection = db.collection('items')
 
-
-    const buscoItems = new Promise((resolve, reject) => {
-        setTimeout(()=>{    
-        resolve(productos.find((item) => item.id == id))
-        },2000)   
+        itemsCollection.get()
+        .then((querySnapShot)=>{
+            querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
+            const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
+           const filtroId = id ? documentos.filter((item) => item.id == id) : documentos
+          
+          setItem(filtroId[0])
         })
+        .catch((err) => console.log('ERROR')) 
+        .finally(() => setLoading(false))       
+        },[id])
 
-        buscoItems.then((res) => {    
-                setItem(res)
-                setEnStock(res.stock)
-            })
-    
-            .catch(() => {
-                console.log("ERROR")
-            })
-
-    },[id])
 
 
     return (

@@ -20,6 +20,7 @@ const AlertCart = ({cantidad,nombre}) => {
                 <Alert.Heading>Felicitaciones!</Alert.Heading>
                 <p>
                   Agregaste {cantidad} vinos {nombre} a tu carrito!
+                  {console.log(cantidad)}
                 </p>
                 <hr />
                 <div className="d-flex justify-content-center">

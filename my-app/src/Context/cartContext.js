@@ -14,6 +14,7 @@ export const CartProvider = ({children}) => {
 
     const [show, setShow] = useState(false)
 
+    // TOTAL CANTIDAD ITEMS EN CARRITO
     const [count, setCount] = useState(0)
 
     // PRECIO TOTAL DEL CARRITO 
@@ -40,7 +41,6 @@ export const CartProvider = ({children}) => {
   
      const isInCart=(id)=>{
         const existe = cart.some(i =>i.id === id);
-    
           return existe;
         }
 
@@ -62,13 +62,15 @@ export const CartProvider = ({children}) => {
 
         if(isInCart(item.id)){
             tomoCantidad(item,cantidad)
-            console.log('if is ' + item)
+
           }
           else{
               setCart([...cart, {...item, cantidad}]);
               console.log(cantidad)
           }
         
+       setCount(count + cantidad) 
+       console.log(count)
        setShow(true)
        console.log('show es:' + show)
     }
@@ -86,12 +88,17 @@ export const CartProvider = ({children}) => {
     }
 
 
+    // const itemsCount = () => {
+    //   return cart.reduce((acc, item ) => ( acc += item.cantidad ))
+      
+    // }
+
     // const handleShow = () => {
     //     setShow(!show)
     // }
 
     return(
-        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart, total}} >
+        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart, total, count}} >
             {children}
         </CartContext.Provider>
     )
