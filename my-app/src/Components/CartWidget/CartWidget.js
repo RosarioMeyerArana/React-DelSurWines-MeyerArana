@@ -10,7 +10,7 @@ const CartWidget = () => {
     return(
         <div className='d-flex justify-content-start'>
             <ShoppingCartRoundedIcon style={{color:'#46515C'}}/>
-            {count == 0 ? console.log(count) : <div className='counterWidget mx-1'>{count}</div>}
+            {count === 0 ? console.log(count) : <div className='counterWidget mx-1'>{count}</div>}
         </div>
     )
 

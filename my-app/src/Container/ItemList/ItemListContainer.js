@@ -53,7 +53,7 @@ const ItemListContainer = () => {
 
     return(
         <div>
-            {loading ? <Spinner animation="border" variant="info" /> : <ItemList productos={item}/> }
+            {loading ? <div className='loader' style={{marginTop: '20%'}}> <Spinner animation="border" variant="info" /> </div> : <ItemList productos={item}/> }
         </div>
         
     )
