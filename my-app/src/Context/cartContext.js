@@ -1,5 +1,8 @@
 import React, { useState , useContext, useEffect} from 'react';
 import Cart from '../Components/Cart/Cart';
+import {Notyf} from 'notyf'
+import 'notyf/notyf.min.css'
+
 
 
 export const CartContext = React.createContext([])
@@ -12,7 +15,7 @@ export const CartProvider = ({children}) => {
     // ITEMS EN EL CARRITO
     const [cart, setCart] = useState([])
 
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false)
 
     // TOTAL CANTIDAD ITEMS EN CARRITO
     const [count, setCount] = useState(0)
@@ -60,6 +63,12 @@ export const CartProvider = ({children}) => {
  //agrega el producto al carrito y si ya esta, manda la info a cantidad.
     const addToCart = (item, cantidad) => {
 
+      const notyf = new Notyf()
+        notyf.success({
+            message: `Agregaste ${item.nombre} al carrito`,
+            duration: 2000,
+        })
+
         if(isInCart(item.id)){
             tomoCantidad(item,cantidad)
 
@@ -71,8 +80,8 @@ export const CartProvider = ({children}) => {
         
        setCount(count + cantidad) 
        console.log(count)
-       setShow(true)
-       console.log('show es:' + show)
+      //  setShow(true)
+    //   console.log('show es:' + show)
     }
 
 

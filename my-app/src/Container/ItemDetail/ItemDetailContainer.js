@@ -14,7 +14,7 @@ const ItemDetailContainer = () => {
 
     const [loading, setLoading] = useState(false)
 
-    const {addToCart, show} = useCartContext()
+    const {addToCart} = useCartContext()
 
     const [cantidad , setCantidad] = useState(0)
     const [enStock, setEnStock] = useState(0)
@@ -62,7 +62,7 @@ const ItemDetailContainer = () => {
                             {/* <Button variant="outlined" color="info">
                                 Agregar al Carrito
                             </Button> */}
-                        {show && <AlertCart cantidad={cantidad} nombre={item.nombre} />}
+                        { /*show && <AlertCart cantidad={cantidad} nombre={item.nombre} /> */}
                     </div>
              </div> 
              : 
