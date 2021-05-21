@@ -2,8 +2,18 @@
     background-color: red;
     padding-left: 7px !important;
     padding-right: 7px !important;
-    border-radius: 30px;
+    border-radius: 50px !important;
     color: white;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: .9rem;
+    width: 25px;
+    height: 25px;
+}
+
+.counterWidget:hover{
+    font-style: none;
+}
+
+.cartWidget{
+    font-size: 1.5rem !important;
 }

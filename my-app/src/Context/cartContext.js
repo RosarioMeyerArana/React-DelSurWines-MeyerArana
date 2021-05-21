@@ -23,6 +23,8 @@ export const CartProvider = ({children}) => {
     // PRECIO TOTAL DEL CARRITO 
     const [total , setTotal] = useState(0)
 
+
+
     useEffect(()=> {
         console.log(cart)
     },[cart])
@@ -62,10 +64,9 @@ export const CartProvider = ({children}) => {
 
  //agrega el producto al carrito y si ya esta, manda la info a cantidad.
     const addToCart = (item, cantidad) => {
-
       const notyf = new Notyf()
         notyf.success({
-            message: `Agregaste ${item.nombre} al carrito`,
+            message: `Agregaste ${cantidad} ${item.nombre} ${item.varietal} al carrito`,
             duration: 2000,
         })
 
@@ -77,17 +78,26 @@ export const CartProvider = ({children}) => {
               setCart([...cart, {...item, cantidad}]);
               console.log(cantidad)
           }
-        
-       setCount(count + cantidad) 
-       console.log(count)
+
+      // setCount(count + cantidad)
       //  setShow(true)
     //   console.log('show es:' + show)
     }
 
 
     const removeItem = (item) => {
+      
+      const notyf = new Notyf()
+        notyf.error({
+            message: `${item.nombre} Eliminado`,
+            duration: 2000,
+        })
+
        const itemRemove =  cart.filter(i => i.id !== item.id)
+       const cuantosItems = cart.reduce((acc, p) => (acc += p.cantidad), 0) 
+
        setCart(itemRemove)
+       setCount(cuantosItems)
     }
     
 
@@ -96,18 +106,20 @@ export const CartProvider = ({children}) => {
         setTotal(0)
     }
 
+    const cartCount = () => {
+      const countCart = cart.reduce((acc, p) => (acc += p.cantidad), 0)
+      setCount(countCart)
+    }
 
-    // const itemsCount = () => {
-    //   return cart.reduce((acc, item ) => ( acc += item.cantidad ))
-      
-    // }
 
-    // const handleShow = () => {
-    //     setShow(!show)
-    // }
+     const precioTotal = () => {
+       const precioTotal = cart.reduce((acc, p) => (acc += p.precio * p.cantidad), 0)
+        setTotal(precioTotal) 
+      }
+
 
     return(
-        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart, total, count}} >
+        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart, total, count, cartCount, precioTotal}} >
             {children}
         </CartContext.Provider>
     )
