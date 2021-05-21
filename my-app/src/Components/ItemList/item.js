@@ -5,12 +5,12 @@ import css from '../ItemList/Item.css';
 import {Link} from 'react-router-dom'
 
 
-const Item = ({nombre, bodega, varietal, precio, stock, img, id}) => {
+const Item = ({nombre, bodega, varietal, precio, image, id}) => {
 
     return(
         <React.Fragment>
             <Link to={`/${varietal}/${id}`} >
-                <Card.Img variant="top" src={img} style={{width: '80%'}} />
+                <Card.Img variant="top" src={image} />
             </Link>   
                 <Card.Body>
                     <Card.Text className="card-bodega">{bodega.toUpperCase()}</Card.Text>

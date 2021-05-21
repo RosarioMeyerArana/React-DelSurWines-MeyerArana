@@ -53,10 +53,10 @@ const ItemDetailContainer = () => {
         <div>
             {item ? 
             <div className='d-flex justify-content-center row container'>
-                <div className='col-4 mt-5'><img className="detailImg" src={item.img}/></div>
+                <div className='col-4 mt-5'><img className="detailImg" style={{width: '120%'}} src={item.image}/></div>
                     <div className='col-6'>
                             <ItemDetail  nombre={item.nombre} bodega={item.bodega} 
-                        varietal={item.varietal} precio={item.precio} stock={item.stock} img={item.img} notas={item.notas} />
+                        varietal={item.varietal} precio={item.precio} notas={item.notas} />
                             <CounterContainer onAdd={onAdd} stock={item.stock} />
                             {/* <Button onClick={agregarCarrito} variant="info" className="mb-4">Agregar al Carrito</Button> */}
                             {/* <Button variant="outlined" color="info">

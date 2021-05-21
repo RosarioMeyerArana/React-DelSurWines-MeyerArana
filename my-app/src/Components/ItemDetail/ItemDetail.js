@@ -1,7 +1,7 @@
 import React from 'react';
 import css from '../ItemDetail/ItemDetail.css'
 
-const ItemDetail = ({nombre,bodega,varietal,precio,stock,img,notas}) =>{
+const ItemDetail = ({nombre,bodega,varietal,precio,notas}) =>{
 
     return(
         <div className="container d-flex justify-content-center mt-5 row">

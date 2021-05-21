@@ -17,7 +17,7 @@ const ItemList = ({productos}) => {
              productos.map(item => 
                 <Card className="shadow mt-3 cardItem" style={{ width: '16rem', marginRight: '1.3rem', paddingTop: '.5rem' }}>
                     <Item key={item.id} nombre={item.nombre} bodega={item.bodega} 
-                    varietal={item.varietal} precio={item.precio} stock={item.stock} img={item.img} id={item.id} /> 
+                    varietal={item.varietal} precio={item.precio} image={item.image} id={item.id} /> 
                 </Card>)
              : <Spinner animation="border" variant="info" /> }
              </div>
