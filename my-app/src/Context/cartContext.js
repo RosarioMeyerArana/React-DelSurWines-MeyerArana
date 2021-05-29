@@ -24,9 +24,49 @@ export const CartProvider = ({children}) => {
     const [total , setTotal] = useState(0)
 
 
+    // const [userInfo, setUserInfo] = useState({
+    //   name: "",
+    //   mail: "",
+    //   confirm: "",
+    //   phone: "",
+    // });
+
+    // const products = items.map((item) => ({
+    //   title: item.name,
+    //   price: item.price,
+    //   quantity: item.amount,
+    //   id: item.id,
+    // }));
+
+    // function CreateOrder() {
+    //   const db = getFirestore();
+    //   const orders = db.collection("orders");
+  
+    //   orders
+    //     .add(order)
+    //     .then(({ id }) => {
+    //       alert(`Your order n° ${id} is sucefully created`);
+    //       console.log(id);
+    //     })
+    //     .catch((e) => {
+    //       console.log(e);
+    //     })
+    //     .finally(clean);
+    // }
+    // let query = categoryId ? collection.where("categoryId", "==", categoryId) : collection
+
+    // const order = {
+    //   buyer: userInfo,
+    //   items: products,
+    //   date: firebase.firestore.FieldValue.serverTimestamp(),
+    //   total: suma,
+    // };
+
+
+
 
     useEffect(()=> {
-        console.log(cart)
+      localStorage.setItem('Items', JSON.stringify(cart));
     },[cart])
 
 

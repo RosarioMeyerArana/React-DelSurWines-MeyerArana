@@ -1,15 +1,19 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import {useCartContext} from '../../Context/cartContext'
 import {Link} from 'react-router-dom'
-// import {Button} from 'react-bootstrap'
 import css from '../Cart/Cart.css';
-//import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { CartList } from '../CartList/CartList';
-
+import { getFirestore } from '../../firebase'
+import firebase from 'firebase/app'
 
 const Cart = () => {
 
-    const {cart} = useCartContext()
+    const {cart, setLoading} = useCartContext()
+
+    const db = getFirestore()
+    const orders = db.collection('orders')
+
+
 
 
     return(
@@ -19,16 +23,7 @@ const Cart = () => {
             :
             <CartList></CartList> 
             } 
-        </div>
-        
-        //     cart.map((item) => {
-        //     return (
-        //     <li className='itemCarrito text-left mb-5' key={item.id}> {item.nombre} - {item.varietal} x {item.cantidad} 
-        //     <DeleteOutlinedIcon className='botonEliminar mx-4 ' onClick={() => removeItem(item)} /> </li>)
-        //     }
-        //     )
-        //     }
-        // <Button variant='outline-danger' onClick={ () => clearCart()}>Limpiar Carrito</Button>    
+        </div>   
         
     )
 }

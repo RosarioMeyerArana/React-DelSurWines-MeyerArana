@@ -1,32 +1,131 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useCartContext } from '../../Context/cartContext'
 import {Button} from 'react-bootstrap'
 import css from '../Cart/Cart.css';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
+import { getFirestore } from '../../firebase'
+import firebase from 'firebase/app'
+import Table from 'react-bootstrap/Table'
+import Spinner from 'react-bootstrap/Spinner'
 
 export const CartList = () => {
+
+    const [orderId, setOrderId] = useState('')
+    const [order, setOrder] = useState('')
+    const [loading, setLoading] = useState()
 
     const { cart, clearCart, total, removeItem, precioTotal} = useCartContext()
     
     precioTotal()
 
+    const db = getFirestore()
+    const orders = db.collection('orders')
+
+
+    const handleCompra = () => {
+        const order = {
+           date: firebase.firestore.Timestamp.fromDate(new Date()),
+           buyer: {
+               nombre: 'tal',
+               mail: 'tal@tal'
+           },
+           cart,
+           total
+       }
+       console.log(order)
+
+       setLoading(true)
+
+       if(order.cart){
+       orders.add(order)
+       .then ((res)=>{
+           setOrderId(res.id)
+       })
+       .catch((err)=>{ console.log('error: ' ,err)})
+       .finally(setLoading(false))
+        }
+   }
+
+
+//    useEffect(()=>{
+//         setLoading(true)
+//        if(order.cart)
+//         orders.add(order)
+//         .then ((res)=>{
+//             setId(res.id)
+//         })
+//         .catch((err)=>{ console.log('error: ' ,err)})
+//         .finally(()=> setLoading(false))
+
+//     }, [orders])
+
+
+    const batchDb = () =>{
+        const batch = db.batch()
+    }
+
+
+
+    const updateOrder = () => {
+        const order = orders.doc()
+        order.update({
+            status: 'enviado',
+            total: 1
+        })
+
+        .then((res) => {
+            console.log('res ', res)
+        })
+        .catch((err) => console.log('error: ', err))
+    } 
+
     return (
        <>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                <th>Nombre</th>
+                <th>Bodega</th>
+                <th>Varietal</th>
+                <th>Cantidad</th>
+                <th>Total por item</th>
+                <th></th>
+                </tr>
+            </thead>
+            <tbody>
             {
             cart.map((item) => {
-            return(
-            <li className='itemCarrito text-left mt-2 mb-3' key={item.id}> {item.nombre} - {item.varietal} x {item.cantidad} 
-            <DeleteOutlinedIcon className='botonEliminar mx-4' onClick={() => removeItem(item)} /> 
-            </li>)
-            }
-            )
-            }
+                        return(
+                            <tr key={item.id}>
+                        <td>{item.nombre}</td>
+                        <td>{item.bodega}</td>
+                        <td>{item.varietal}</td>
+                        <td>{item.cantidad}</td>
+                        <td>{item.cantidad * item.precio}</td>
+                        <td>
+                        <DeleteOutlinedIcon className='botonEliminar mx-4' onClick={() => removeItem(item)} /> 
+                        </td>
+                        </tr>
+                        )
+                        }
+                        )
+                    }
+            </tbody>
+        </Table>
+
             <hr/>
             <div className='total text-left'>
                 <p>Subtotal: ${total} </p>
-                <Button variant='outline-info' style={{marginRight: '1.5rem'}} path={'/checkout'}>Finalizar Compra</Button> 
+                <Button variant='outline-info' style={{marginRight: '1.5rem'}} onClick={()=> handleCompra()} path={'/checkout'}>Finalizar Compra</Button> 
                 <Button variant='outline-danger' onClick={ () => clearCart()}>Vaciar Carrito</Button>
+            
+            { orderId &&
+                <div className='mt-4'> Tu pedido fue confirmado! El id de tu compra es: {orderId} </div>
+            }
+                
             </div>
     </> 
     )
 }
+
+
