@@ -5,6 +5,7 @@ import Cart from './Components/Cart/Cart';
 import ItemDetailContainer from './Container/ItemDetail/ItemDetailContainer';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import CartProvider from './Context/cartContext'
+import {CarouselHome} from './Components/Carousel/Carousel'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                   <ItemListContainer/>
               </Route>
               <Route path="/">
+                  <CarouselHome/>
                   <ItemListContainer/>
               </Route>
           </Switch>

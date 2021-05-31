@@ -12,7 +12,7 @@ const ItemList = ({productos}) => {
    
     return(
          <React.Fragment>
-             <div className="d-flex justify-content-start container flex-wrap my-5 mx-5">
+             <div style={{width:'90%'}} className="d-flex justify-content-start container flex-wrap my-5">
              {productos.length ? 
              productos.map(item => 
                 <Card className="shadow mt-3 cardItem" style={{ width: '16rem', marginRight: '1.3rem', paddingTop: '.5rem' }}>
