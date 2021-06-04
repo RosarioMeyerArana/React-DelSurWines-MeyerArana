@@ -143,7 +143,14 @@ const Checkout = () => {
                 </Form>
                 {
                 orderId ? 
-                <div className='resumenPedidoId col-3 text-left' style={{marginTop: '7rem', height: '30%'}}> Tu pedido se realizó con éxito! el id de la compra es : {orderId} <hr/> {datosOrder.buyer.nombre} <br/> {datosOrder.buyer.apellido} <br/> {datosOrder.buyer.mail} <br/> {datosOrder.buyer.direccion} </div> 
+                <div className='resumenPedidoId col-3 text-left' style={{marginTop: '7rem', height: '30%'}}> 
+                Tu pedido se realizó con éxito! 
+                <br/>El id de la compra es : {orderId} 
+                <hr/> {datosOrder.buyer.nombre} 
+                <br/> {datosOrder.buyer.apellido} 
+                <br/> {datosOrder.buyer.mail} 
+                <br/> {datosOrder.buyer.direccion} 
+                <br/> {datosOrder.buyer.localidad}</div> 
                 : 
                 <div className='resumenPedido col-3 text-left' style={{marginTop: '7rem', height: '30%'}}>
                 Resumen de tu pedido:

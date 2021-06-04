@@ -17,3 +17,7 @@
 .cartWidget{
     font-size: 1.5rem !important;
 }
+
+.cartWidget:hover{
+    color: blueviolet !important;
+}
