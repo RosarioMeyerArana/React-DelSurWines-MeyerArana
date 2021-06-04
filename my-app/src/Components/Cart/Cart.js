@@ -10,16 +10,16 @@ const Cart = () => {
 
     const {cart, setLoading} = useCartContext()
 
+
     const db = getFirestore()
     const orders = db.collection('orders')
 
 
 
-
     return(
         <div className='mt-5 container'>
-            <h1 className='text-left mb-4'>Mi Carrito de Compras</h1>
-            {cart.length == 0 ? <div className='mt-5 text-left'>Tu carrito está vacío, ve a la <Link to='/'> tienda</Link> y empieza a comprar</div>
+            <h1 className='text-left' style={{marginTop:'5rem'}} >Mi Carrito de Compras</h1>
+            {cart.length == 0 ? <div className='mt-3 text-left'>Ups! Tu carrito está vacío, ve a la <Link to='/'> tienda</Link> y empieza a comprar</div>
             :
             <CartList></CartList> 
             } 

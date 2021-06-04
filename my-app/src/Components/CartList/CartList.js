@@ -6,13 +6,13 @@ import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
 import { getFirestore } from '../../firebase'
 import firebase from 'firebase/app'
 import Table from 'react-bootstrap/Table'
-import Spinner from 'react-bootstrap/Spinner'
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+import { Link } from 'react-router-dom';
 
 export const CartList = () => {
 
     const [orderId, setOrderId] = useState('')
     const [order, setOrder] = useState('')
-    const [loading, setLoading] = useState()
 
     const { cart, clearCart, total, removeItem, precioTotal} = useCartContext()
     
@@ -21,49 +21,35 @@ export const CartList = () => {
     const db = getFirestore()
     const orders = db.collection('orders')
 
+//     const handleCompra = () => {
+//         const order = {
+//            date: firebase.firestore.Timestamp.fromDate(new Date()),
+//            buyer: {
+//                nombre: 'tal',
+//                mail: 'tal@tal'
+//            },
+//            cart,
+//            total
+//        }
+//        console.log(order)
+//        setDatosCompra(order)
 
-    const handleCompra = () => {
-        const order = {
-           date: firebase.firestore.Timestamp.fromDate(new Date()),
-           buyer: {
-               nombre: 'tal',
-               mail: 'tal@tal'
-           },
-           cart,
-           total
-       }
-       console.log(order)
+//        setLoading(true)
 
-       setLoading(true)
-
-       if(order.cart){
-       orders.add(order)
-       .then ((res)=>{
-           setOrderId(res.id)
-       })
-       .catch((err)=>{ console.log('error: ' ,err)})
-       .finally(setLoading(false))
-        }
-   }
-
-
-//    useEffect(()=>{
-//         setLoading(true)
-//        if(order.cart)
-//         orders.add(order)
-//         .then ((res)=>{
-//             setId(res.id)
-//         })
-//         .catch((err)=>{ console.log('error: ' ,err)})
-//         .finally(()=> setLoading(false))
-
-//     }, [orders])
+//        if(order.cart){
+//        orders.add(order)
+//        .then ((res)=>{
+//            setOrderId(res.id)
+//        })
+//        .catch((err)=>{ console.log('error: ' ,err)})
+//        .finally(setLoading(false))
+//         }
+//    }
 
 
     const batchDb = () =>{
         const batch = db.batch()
     }
-
 
 
     const updateOrder = () => {
@@ -88,6 +74,7 @@ export const CartList = () => {
                 <th>Bodega</th>
                 <th>Varietal</th>
                 <th>Cantidad</th>
+                <th>Precio</th>
                 <th>Total por item</th>
                 <th></th>
                 </tr>
@@ -100,10 +87,13 @@ export const CartList = () => {
                         <td>{item.nombre}</td>
                         <td>{item.bodega}</td>
                         <td>{item.varietal}</td>
-                        <td>{item.cantidad}</td>
+                        <td>{item.cantidad}
+                        </td>
+                        <td>{item.precio}</td>
                         <td>{item.cantidad * item.precio}</td>
                         <td>
-                        <DeleteOutlinedIcon className='botonEliminar mx-4' onClick={() => removeItem(item)} /> 
+                        <EditOutlinedIcon/>
+                        <DeleteOutlinedIcon className='botonEliminar' onClick={() => removeItem(item)} /> 
                         </td>
                         </tr>
                         )
@@ -116,7 +106,9 @@ export const CartList = () => {
             <hr/>
             <div className='total text-left'>
                 <p>Subtotal: ${total} </p>
-                <Button variant='outline-info' style={{marginRight: '1.5rem'}} onClick={()=> handleCompra()} path={'/checkout'}>Finalizar Compra</Button> 
+                <Link to={'/checkout'}>
+                    <Button variant='outline-info' style={{marginRight: '1.5rem'}}>Finalizar Compra</Button> 
+                </Link>
                 <Button variant='outline-danger' onClick={ () => clearCart()}>Vaciar Carrito</Button>
             
             { orderId &&

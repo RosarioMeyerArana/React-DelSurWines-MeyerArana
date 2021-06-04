@@ -1,12 +1,15 @@
 import React from 'react';
 import css from '../ItemDetail/ItemDetail.css'
 
-const ItemDetail = ({nombre,bodega,varietal,precio,notas}) =>{
+const ItemDetail = ({nombre,bodega,varietal,precio,notas, image, stock}) =>{
 
     return(
-        <div className="container d-flex justify-content-center mt-5 row">
-            {/* <div className='col-6'><img className="detailImg" src={img}/></div> */}
-            <div className='col-5 text-center'>
+        <div style={{marginTop: '5rem', marginBottom: '3rem'}}>
+            {/* <div className='col-6'>
+                <img className="detailImg" style={{width: '180%'}} src={image}/>
+            </div> */}
+            
+            <div className='text-center'>
                 <p className='detailBodega'>{bodega}</p>
                 <h1 className='detailNombre'>{nombre}</h1>
                 <p className='detailVarietal'>{varietal}</p>

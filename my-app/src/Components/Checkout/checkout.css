@@ -1,0 +1,46 @@
+
+.ultimoPaso {
+    font-size: 3rem;
+    color: blueviolet
+}
+
+.resumenPedido{
+    padding: 10px;
+    width: 30%;
+    font-size: 1.5rem;
+    border: 1px solid blueviolet;
+
+}
+
+.liResumen{
+    font-size: 1rem !important;
+    margin-bottom: 1rem;
+}
+
+.subtotal{
+    font-size: 1.2rem !important;
+}
+
+.formCheckout{
+    width: 50%;
+    margin-bottom: 6rem;
+}
+
+.colForm{
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.colResumen{
+    max-width: 100% !important;
+    padding: 0 !important;
+
+}
+
+.resumenPedidoId{
+    border: 2px solid blueviolet;
+    padding: 1rem
+
+}

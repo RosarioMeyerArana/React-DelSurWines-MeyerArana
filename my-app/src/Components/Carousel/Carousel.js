@@ -3,7 +3,7 @@ import Carousel from 'react-bootstrap/Carousel'
 
 export const CarouselHome = () => {
     return (
-        <Carousel style={{width: '90%'}} className='mt-5 container' >
+        <Carousel style={{width: '90%', marginTop:'5rem'}} className='container' >
   <Carousel.Item>
     <img
       className="d-block w-100"

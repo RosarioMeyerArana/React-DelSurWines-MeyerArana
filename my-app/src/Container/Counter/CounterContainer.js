@@ -15,6 +15,7 @@ const CounterContainer = ({stock, onAdd}) => {
     }, [stock])
 
 
+
     const suma = () => {
         setCantidad(cantidad + 1)
         setEnStock(enStock - 1)

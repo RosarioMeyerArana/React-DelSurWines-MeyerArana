@@ -14,7 +14,7 @@ const Counter = ({enStock, resta, suma, cantidad, onAdd}) => {
                     <p className="cantidad">{cantidad}</p>
                     <Button variant="outline-info" className="btn-modifica" onClick={suma} disabled={enStock === 0}>+</Button>
                 </div>
-                <Button variant="outlined" color="info" disabled={cantidad === 0} onClick={() => onAdd(cantidad)}>
+                <Button variant="outline-info" disabled={cantidad === 0} onClick={() => onAdd(cantidad)}>
                 Agregar al Carrito
                 </Button>
             </div>

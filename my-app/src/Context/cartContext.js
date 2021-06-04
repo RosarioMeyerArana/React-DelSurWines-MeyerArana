@@ -55,14 +55,6 @@ export const CartProvider = ({children}) => {
     // }
     // let query = categoryId ? collection.where("categoryId", "==", categoryId) : collection
 
-    // const order = {
-    //   buyer: userInfo,
-    //   items: products,
-    //   date: firebase.firestore.FieldValue.serverTimestamp(),
-    //   total: suma,
-    // };
-
-
 
 
     useEffect(()=> {
@@ -118,10 +110,6 @@ export const CartProvider = ({children}) => {
               setCart([...cart, {...item, cantidad}]);
               console.log(cantidad)
           }
-
-      // setCount(count + cantidad)
-      //  setShow(true)
-    //   console.log('show es:' + show)
     }
 
 

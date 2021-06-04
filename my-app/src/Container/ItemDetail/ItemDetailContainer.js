@@ -52,11 +52,11 @@ const ItemDetailContainer = () => {
     return (
         <div>
             {item ? 
-            <div className='d-flex justify-content-center row container'>
-                <div className='col-4 mt-5'><img className="detailImg" style={{width: '120%'}} src={item.image}/></div>
-                    <div className='col-6'>
+            <div className='d-flex justify-content-center row'>
+                <div className='col-5'><img className="detailImg" style={{width: '90%', marginTop:'5rem'}} src={item.image}/></div>
+                    <div className='col-4 mx-5' >
                             <ItemDetail  nombre={item.nombre} bodega={item.bodega} 
-                        varietal={item.varietal} precio={item.precio} notas={item.notas} />
+                        varietal={item.varietal} precio={item.precio} notas={item.notas} image={item.image} stock={item.stock} onAdd={onAdd} />
                             <CounterContainer onAdd={onAdd} stock={item.stock} />
                             {/* <Button onClick={agregarCarrito} variant="info" className="mb-4">Agregar al Carrito</Button> */}
                             {/* <Button variant="outlined" color="info">

@@ -10,7 +10,7 @@ const NavBar = () => {
 
     return(
         <header>
-            <Navbar bg="light" variant="light" className="shadow px-5">
+            <Navbar fixed="top" bg="light" variant="light" className="shadow px-5">
             <NavLink to={'/'}  className="container-logo">
             <img className="logo" src={logo} alt="" />
             </NavLink>
@@ -20,6 +20,7 @@ const NavBar = () => {
                 <NavLink to='/Bonarda' activeClassName='claseActiva' className="navbar-item">Bonarda</NavLink>
                 <NavLink to='/Cabernet' activeClassName='claseActiva' className="navbar-item">Cabernet</NavLink>
                 <NavLink to='/Chardonnay' activeClassName='claseActiva' className="navbar-item">Chardonnay</NavLink>
+                <NavLink to='/Rosé' activeClassName='claseActiva' className="navbar-item">Rosé</NavLink>
             </Nav>
             <NavLink to='/Cart' activeClassName='claseActiva' className='navbar-item'>
                 <CartWidget/> 
