@@ -98,7 +98,7 @@ export const CartProvider = ({children}) => {
     const addToCart = (item, cantidad) => {
       const notyf = new Notyf()
         notyf.success({
-            message: `<p style='color: white'> Agregaste ${cantidad} ${item.nombre} ${item.varietal} al carrito <p> <br> <a href='/cart' style='color: white'> Ver carrito </a> `,
+            message: `<div style='color: white'> Agregaste: <br/> ${cantidad} ${item.nombre} ${item.varietal} al carrito </div> <br> <a href='/cart' style='color: white'> Ver carrito </a> `,
             duration: 2000,
         })
 

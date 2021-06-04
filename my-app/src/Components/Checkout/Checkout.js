@@ -1,15 +1,14 @@
 import React, {useState} from 'react'
+import Container from 'react-bootstrap/Container'
+import { useCartContext } from '../../Context/cartContext'
+import css from '../Checkout/checkout.css'
+import { getFirestore } from '../../firebase'
+import firebase from 'firebase/app'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
-import { useCartContext } from '../../Context/cartContext'
-import css from '../Checkout/checkout.css'
-import { FormControl } from '@material-ui/core'
-import { getFirestore } from '../../firebase'
-import firebase from 'firebase/app'
 
 
 const Checkout = () => {
@@ -69,7 +68,7 @@ const Checkout = () => {
        return (
             <Container >
                <div className='d-flex justify-content-around' > 
-                <Form noValidate validated={validated} className='formCheckout col-6' onSubmit={handleSubmit} style={{marginTop: '4rem', textAlign: 'left'}}>
+               <Form noValidate validated={validated} className='formCheckout col-6' onSubmit={handleSubmit} style={{marginTop: '4rem', textAlign: 'left'}}>
                     <div className='mt-2 mb-4 ultimoPaso'>Estás a un paso de finalizar tu compra!</div>
                     <div className='ingresoDatos mb-4'>Por favor ingresa tus datos y dirección de envío:</div>
                     <Form.Row>

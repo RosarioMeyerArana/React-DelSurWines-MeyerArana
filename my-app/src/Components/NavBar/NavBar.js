@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from '../../Images/logo.png';
 import {NavLink} from 'react-router-dom';
+import UserWidget from '../UserWidget/UserWidget'
 
 const NavBar = () => {
 
@@ -22,6 +23,9 @@ const NavBar = () => {
                 <NavLink to='/Chardonnay' activeClassName='claseActiva' className="navbar-item">Chardonnay</NavLink>
                 <NavLink to='/Rosé' activeClassName='claseActiva' className="navbar-item">Rosé</NavLink>
             </Nav>
+            <NavLink to='/Login' activeClassName='claseActiva' className='navbar-item'>
+                <UserWidget/> 
+            </NavLink> 
             <NavLink to='/Cart' activeClassName='claseActiva' className='navbar-item'>
                 <CartWidget/> 
             </NavLink> 

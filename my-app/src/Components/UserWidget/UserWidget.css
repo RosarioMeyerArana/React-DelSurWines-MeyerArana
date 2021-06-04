@@ -1,0 +1,8 @@
+.userIcon{
+    font-size: 1.5rem !important; 
+}
+
+.userIcon:hover{
+    color: blueviolet;
+    font-style: none;
+}
