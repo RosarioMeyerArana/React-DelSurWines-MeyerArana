@@ -55,8 +55,6 @@ export const CartList = () => {
     const updateOrder = () => {
         const order = orders.doc()
         order.update({
-            status: 'enviado',
-            total: 1
         })
 
         .then((res) => {
