@@ -7,6 +7,8 @@ const CartWidget = () => {
 
     const {count, cartCount} = useCartContext()
 
+    localStorage.cart && JSON.parse(localStorage.cart)
+
     cartCount()
 
     return(

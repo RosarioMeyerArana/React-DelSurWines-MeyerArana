@@ -23,9 +23,6 @@ const NavBar = () => {
                 <NavLink to='/Chardonnay' activeClassName='claseActiva' className="navbar-item">Chardonnay</NavLink>
                 <NavLink to='/Rosé' activeClassName='claseActiva' className="navbar-item">Rosé</NavLink>
             </Nav>
-            <NavLink to='/Login' activeClassName='claseActiva' className='navbar-item'>
-                <UserWidget/> 
-            </NavLink> 
             <NavLink to='/Cart' activeClassName='claseActiva' className='navbar-item'>
                 <CartWidget/> 
             </NavLink> 

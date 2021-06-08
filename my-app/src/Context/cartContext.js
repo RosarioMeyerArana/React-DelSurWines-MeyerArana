@@ -2,7 +2,9 @@ import React, { useState , useContext, useEffect} from 'react';
 import Cart from '../Components/Cart/Cart';
 import {Notyf} from 'notyf'
 import 'notyf/notyf.min.css'
-
+import Link from 'react-router-dom'
+import { getFirestore } from '../firebase'
+import firebase from 'firebase/app'
 
 
 export const CartContext = React.createContext([])
@@ -13,9 +15,7 @@ export const CartProvider = ({children}) => {
 
 
     // ITEMS EN EL CARRITO
-    const [cart, setCart] = useState([])
-
-    // const [show, setShow] = useState(false)
+    const [cart, setCart] = useState(localStorage.getItem('Cart') ? JSON.parse(localStorage.getItem('Cart')) : [])
 
     // TOTAL CANTIDAD ITEMS EN CARRITO
     const [count, setCount] = useState(0)
@@ -24,58 +24,14 @@ export const CartProvider = ({children}) => {
     const [total , setTotal] = useState(0)
 
 
-    // const [userInfo, setUserInfo] = useState({
-    //   name: "",
-    //   mail: "",
-    //   confirm: "",
-    //   phone: "",
-    // });
-
-    // const products = items.map((item) => ({
-    //   title: item.name,
-    //   price: item.price,
-    //   quantity: item.amount,
-    //   id: item.id,
-    // }));
-
-    // function CreateOrder() {
-    //   const db = getFirestore();
-    //   const orders = db.collection("orders");
-  
-    //   orders
-    //     .add(order)
-    //     .then(({ id }) => {
-    //       alert(`Your order n° ${id} is sucefully created`);
-    //       console.log(id);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     })
-    //     .finally(clean);
-    // }
-    // let query = categoryId ? collection.where("categoryId", "==", categoryId) : collection
-
-
+    const db = getFirestore()
+    const orders = db.collection('orders')
 
     useEffect(()=> {
-      localStorage.setItem('Items', JSON.stringify(cart));
+      localStorage.setItem('Cart', JSON.stringify(cart));
     },[cart])
 
-
-    //  const exists = cart.find(i => i.nombre == item.nombre)
-
-    //  console.log(exists)
-    //    if(exists){
-    //         exists.cantidad += cantidad
-    //     //   let indexItem = cart.findIndex(i => i.nombre == i.nombre)
-    //     //   let sumoCant = cart[indexItem].cantidad + cantidad
-    //        setCart(...cart)
-    //        console.log(cart)
-
     
-     //si el producto esta o no en el carrito devuelve true || false.
-  
-  
      const isInCart=(id)=>{
         const existe = cart.some(i =>i.id === id);
           return existe;
@@ -83,6 +39,7 @@ export const CartProvider = ({children}) => {
 
 
   //si ya esta realiza un filtro con un mapeo para solo sumar la cantidad nueva.
+ 
   const tomoCantidad =(item,cantidad)=>{
     const filtro = [...cart];
       filtro.forEach(i => {
@@ -94,22 +51,70 @@ export const CartProvider = ({children}) => {
   }
 
 
+//   const batchUpdateStock = (cart) => {
+//     const batch = db.batch()
+//     cart.forEach(item => 
+//      { batch.update(db.collection('items').doc(item.id),
+//          {stock:firebase.firestore.FieldValue.increment( - item.cantidad)}) 
+//      });
+
+//      batch.commit()
+//      .then((res)=> { console.log(res)})
+//      .catch((err)=>{
+//        console.log(err)
+//      })
+// }
+
+    // const batchUpdateClear = (cart) => {
+    //   const batch = db.batch()
+    //     cart && cart.forEach(item => 
+    //     { batch.update(db.collection('items').doc(item.id),
+    //         {stock:firebase.firestore.FieldValue.increment( + item.cantidad)}) 
+    //     });
+
+    //     batch.commit()
+    //     .then((res)=> { console.log(res)})
+    //     .catch((err)=>{
+    //       console.log(err)
+    //     })
+    // }
+
+
+    const updateStock = (item, cantidad) => {
+      const docRef = db.collection('items').doc(item.id)
+
+      const stockPrevio = item
+
+      const stockActual = cantidad
+
+      // docRef.update({stock: stockPrevio - stockActual})
+
+      console.log(stockPrevio)
+      console.log(stockActual)
+
+    } 
+
+
  //agrega el producto al carrito y si ya esta, manda la info a cantidad.
     const addToCart = (item, cantidad) => {
       const notyf = new Notyf()
         notyf.success({
-            message: `<div style='color: white'> Agregaste: <br/> ${cantidad} ${item.nombre} ${item.varietal} al carrito </div> <br> <a href='/cart' style='color: white'> Ver carrito </a> `,
+            message: `<div style='color: white'> Agregaste: <br/> ${cantidad} ${item.nombre} ${item.varietal} al carrito </div> 
+                        <br> 
+                      <Link to='/Cart' style='color: white'> Ver carrito </Link> `,
             duration: 2000,
         })
 
         if(isInCart(item.id)){
             tomoCantidad(item,cantidad)
-
+           
           }
           else{
               setCart([...cart, {...item, cantidad}]);
-              console.log(cantidad)
+              
           }
+
+          
     }
 
 
@@ -126,12 +131,15 @@ export const CartProvider = ({children}) => {
 
        setCart(itemRemove)
        setCount(cuantosItems)
+       localStorage.setItem('Cart', JSON.stringify(cart))
+
     }
     
 
-    const clearCart = () => {
+    const clearCart = (cart) => {
         setCart([])
         setTotal(0)
+
     }
 
     const cartCount = () => {
@@ -142,12 +150,12 @@ export const CartProvider = ({children}) => {
 
      const precioTotal = () => {
        const precioTotal = cart.reduce((acc, p) => (acc += p.precio * p.cantidad), 0)
-        setTotal(precioTotal) 
+        setTotal(precioTotal)
       }
 
 
     return(
-        <CartContext.Provider value={{cart, addToCart, removeItem, clearCart, total, count, cartCount, precioTotal}} >
+        <CartContext.Provider value={{updateStock ,cart, setCart, addToCart, removeItem, clearCart, total, count, cartCount, precioTotal}} >
             {children}
         </CartContext.Provider>
     )

@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button'
 
 const Checkout = () => {
 
-        const {cart, total} = useCartContext()
+        const { setCart, cart, total, clearCart, batchUpdateStock} = useCartContext()
         const [validated, setValidated] = useState(false);
         const [user, setUser] = useState({nombre: '', apellido: '', mail: '', direccion:'', localidad:'', ciudad:'' })
         const [datosOrder, setDatosOrder] = useState({})
@@ -50,19 +50,26 @@ const Checkout = () => {
                total
            }
            setLoading(true)
-           console.log(order)
            setDatosOrder(order)
     
            if(order.cart){
            orders.add(order)
            .then ((res)=>{
                setOrderId(res.id)
+
            })
            .catch((err)=>{ console.log('error: ' ,err)})
-           .finally(setLoading(false))
+           .finally(()=>{
+               setLoading(false)
+               clearCart()
+                }
+               )
             }
        }
 
+
+       
+       
 
 
        return (

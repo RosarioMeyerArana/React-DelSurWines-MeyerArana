@@ -8,13 +8,7 @@ import firebase from 'firebase/app'
 
 const Cart = () => {
 
-    const {cart, setLoading} = useCartContext()
-
-
-    const db = getFirestore()
-    const orders = db.collection('orders')
-
-
+    const {cart} = useCartContext()
 
     return(
         <div className='mt-5 container'>

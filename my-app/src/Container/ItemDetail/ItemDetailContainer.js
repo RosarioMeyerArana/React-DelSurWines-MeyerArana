@@ -14,20 +14,22 @@ const ItemDetailContainer = () => {
 
     const [loading, setLoading] = useState(false)
 
-    const {addToCart} = useCartContext()
+    const {addToCart, updateStock} = useCartContext()
 
-    const [cantidad , setCantidad] = useState(0)
-    const [enStock, setEnStock] = useState(0)
+
+    // const [cantidad , setCantidad] = useState(0)
+    // const [enStock, setEnStock] = useState(0)
 
 
    const onAdd = (cantidad) => {
        addToCart(item,cantidad)
-    }
+       updateStock(item,cantidad)
 
+    }
 
     const {id} = useParams() 
 
-    const {varietal} = useParams()
+     // const {varietal} = useParams()
 
     useEffect(()=> { 
         setLoading(true)
@@ -39,14 +41,14 @@ const ItemDetailContainer = () => {
         .then((querySnapShot)=>{
             querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
-           const filtroId = id ? documentos.filter((item) => item.id == id) : documentos
+            const filtroId = id ? documentos.filter((item) => item.id == id) : documentos
           
           setItem(filtroId[0])
+
         })
         .catch((err) => console.log('ERROR')) 
         .finally(() => setLoading(false))       
         },[id])
-
 
 
     return (
@@ -56,12 +58,8 @@ const ItemDetailContainer = () => {
                 <div className='col-5'><img className="detailImg" style={{width: '90%', marginTop:'5rem'}} src={item.image}/></div>
                     <div className='col-4 mx-5' >
                             <ItemDetail  nombre={item.nombre} bodega={item.bodega} 
-                        varietal={item.varietal} precio={item.precio} notas={item.notas} image={item.image} stock={item.stock} onAdd={onAdd} />
+                        varietal={item.varietal} precio={item.precio} notas={item.notas} onAdd={onAdd} />
                             <CounterContainer onAdd={onAdd} stock={item.stock} />
-                            {/* <Button onClick={agregarCarrito} variant="info" className="mb-4">Agregar al Carrito</Button> */}
-                            {/* <Button variant="outlined" color="info">
-                                Agregar al Carrito
-                            </Button> */}
                         { /*show && <AlertCart cantidad={cantidad} nombre={item.nombre} /> */}
                     </div>
              </div> 

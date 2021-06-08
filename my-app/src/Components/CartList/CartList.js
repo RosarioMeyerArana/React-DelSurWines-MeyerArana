@@ -21,31 +21,6 @@ export const CartList = () => {
     const db = getFirestore()
     const orders = db.collection('orders')
 
-//     const handleCompra = () => {
-//         const order = {
-//            date: firebase.firestore.Timestamp.fromDate(new Date()),
-//            buyer: {
-//                nombre: 'tal',
-//                mail: 'tal@tal'
-//            },
-//            cart,
-//            total
-//        }
-//        console.log(order)
-//        setDatosCompra(order)
-
-//        setLoading(true)
-
-//        if(order.cart){
-//        orders.add(order)
-//        .then ((res)=>{
-//            setOrderId(res.id)
-//        })
-//        .catch((err)=>{ console.log('error: ' ,err)})
-//        .finally(setLoading(false))
-//         }
-//    }
-
 
     const batchDb = () =>{
         const batch = db.batch()

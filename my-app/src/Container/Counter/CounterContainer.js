@@ -15,7 +15,6 @@ const CounterContainer = ({stock, onAdd}) => {
     }, [stock])
 
 
-
     const suma = () => {
         setCantidad(cantidad + 1)
         setEnStock(enStock - 1)
@@ -25,7 +24,6 @@ const CounterContainer = ({stock, onAdd}) => {
         setCantidad(cantidad - 1)
         setEnStock(enStock + 1)
     };
-
 
     return(
         <Counter onAdd={onAdd} cantidad={cantidad} enStock={enStock} suma={suma} resta={resta} />
