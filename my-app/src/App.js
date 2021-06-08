@@ -7,7 +7,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import CartProvider from './Context/cartContext'
 import {CarouselHome} from './Components/Carousel/Carousel'
 import Checkout from './Components/Checkout/Checkout'
-import Login from './Components/Login/Login'
 
 
 function App() {
@@ -18,9 +17,6 @@ function App() {
       <BrowserRouter>
           <NavBar/>
           <Switch>
-          <Route path="/Login">    
-                  <Login/>
-              </Route>
              <Route path="/Cart">    
                   <Cart/>
               </Route>

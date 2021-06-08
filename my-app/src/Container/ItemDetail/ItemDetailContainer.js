@@ -23,7 +23,7 @@ const ItemDetailContainer = () => {
 
    const onAdd = (cantidad) => {
        addToCart(item,cantidad)
-       updateStock(item,cantidad)
+       updateStock(item.id, item.stock,cantidad)
 
     }
 

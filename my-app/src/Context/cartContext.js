@@ -80,14 +80,14 @@ export const CartProvider = ({children}) => {
     // }
 
 
-    const updateStock = (item, cantidad) => {
-      const docRef = db.collection('items').doc(item.id)
+    const updateStock = (itemId, itemStock, cantidad) => {
+      const docRef = db.collection('items').doc(itemId)
 
-      const stockPrevio = item
+      const stockPrevio = itemStock
 
       const stockActual = cantidad
 
-      // docRef.update({stock: stockPrevio - stockActual})
+      docRef.update({stock: stockPrevio - stockActual})
 
       console.log(stockPrevio)
       console.log(stockActual)
@@ -95,13 +95,30 @@ export const CartProvider = ({children}) => {
     } 
 
 
- //agrega el producto al carrito y si ya esta, manda la info a cantidad.
+    const updateStockDelete = (itemId, itemStock, cantidad) => {
+      const docRef = db.collection('items').doc(itemId)
+
+      const stockPrevio = itemStock - cantidad
+
+      const stockActual = cantidad
+
+      console.log(stockPrevio)
+      console.log(stockActual)
+
+      docRef.update({stock: stockPrevio + stockActual})
+
+
+    } 
+
+
+
+
     const addToCart = (item, cantidad) => {
       const notyf = new Notyf()
         notyf.success({
             message: `<div style='color: white'> Agregaste: <br/> ${cantidad} ${item.nombre} ${item.varietal} al carrito </div> 
                         <br> 
-                      <Link to='/Cart' style='color: white'> Ver carrito </Link> `,
+                      <a href='/Cart' style='color: white'> Ver carrito </a> `,
             duration: 2000,
         })
 
@@ -129,6 +146,9 @@ export const CartProvider = ({children}) => {
        const itemRemove =  cart.filter(i => i.id !== item.id)
        const cuantosItems = cart.reduce((acc, p) => (acc += p.cantidad), 0) 
 
+
+       updateStockDelete(item.id, item.stock, item.cantidad )
+
        setCart(itemRemove)
        setCount(cuantosItems)
        localStorage.setItem('Cart', JSON.stringify(cart))
@@ -139,6 +159,8 @@ export const CartProvider = ({children}) => {
     const clearCart = (cart) => {
         setCart([])
         setTotal(0)
+
+        cart.forEach(item => updateStockDelete(item.id, item.stock, item.cantidad ) )
 
     }
 
@@ -155,7 +177,7 @@ export const CartProvider = ({children}) => {
 
 
     return(
-        <CartContext.Provider value={{updateStock ,cart, setCart, addToCart, removeItem, clearCart, total, count, cartCount, precioTotal}} >
+        <CartContext.Provider value={{updateStock, updateStockDelete ,cart, setCart, addToCart, removeItem, clearCart, total, count, cartCount, precioTotal}} >
             {children}
         </CartContext.Provider>
     )
