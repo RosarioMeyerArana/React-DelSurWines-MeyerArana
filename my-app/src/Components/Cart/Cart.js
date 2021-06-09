@@ -12,10 +12,10 @@ const Cart = () => {
 
     return(
         <div className='mt-5 container'>
-            <h1 className='text-left miCarrito' style={{marginTop:'5rem'}} >Mi Carrito de Compras</h1>
+            <h1 className='text-left miCarrito' style={{marginTop:'7rem'}} >Mi Carrito de Compras</h1>
             {cart.length == 0 ? <div className='mt-3 text-left'>Ups! Tu carrito está vacío, ve a la <Link to='/'> tienda</Link> y empieza a comprar</div>
             :
-            <CartList></CartList> 
+            <CartList/> 
             } 
         </div>   
         

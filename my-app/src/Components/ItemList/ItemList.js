@@ -5,14 +5,15 @@ import {Card, Button} from 'react-bootstrap'
 import CounterContainer from '../../Container/Counter/CounterContainer'
 import {CartContext} from '../../Context/cartContext'
 
-const ItemList = ({productos}) => {
+const ItemList = ({productos, titulo}) => {
 
     const {addToCart} = useContext(CartContext)
 
    
     return(
          <React.Fragment>
-             <div style={{width:'90%'}} className="d-flex justify-content-start container flex-wrap my-5">
+            <h1 className='text-left' style={{color: 'blueviolet', marginLeft:'6rem'}}>{titulo}</h1>
+             <div style={{width:'90%'}} className="d-flex justify-content-start container flex-wrap my-3">
              {productos.length ? 
              productos.map(item => 
                 <Card className="shadow mt-3 cardItem" style={{ width: '16rem', marginRight: '1.3rem', paddingTop: '.5rem' }}>

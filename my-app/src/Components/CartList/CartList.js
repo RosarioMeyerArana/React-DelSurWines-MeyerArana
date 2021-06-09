@@ -22,22 +22,6 @@ export const CartList = () => {
     const orders = db.collection('orders')
 
 
-    const batchDb = () =>{
-        const batch = db.batch()
-    }
-
-
-    const updateOrder = () => {
-        const order = orders.doc()
-        order.update({
-        })
-
-        .then((res) => {
-            console.log('res ', res)
-        })
-        .catch((err) => console.log('error: ', err))
-    } 
-
     return (
        <>
         <Table striped bordered hover>

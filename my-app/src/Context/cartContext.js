@@ -102,11 +102,7 @@ export const CartProvider = ({children}) => {
 
       const stockActual = cantidad
 
-      console.log(stockPrevio)
-      console.log(stockActual)
-
       docRef.update({stock: stockPrevio + stockActual})
-
 
     } 
 
@@ -160,8 +156,6 @@ export const CartProvider = ({children}) => {
         setCart([])
         setTotal(0)
 
-        cart.forEach(item => updateStockDelete(item.id, item.stock, item.cantidad ) )
-
     }
 
     const cartCount = () => {
@@ -177,7 +171,7 @@ export const CartProvider = ({children}) => {
 
 
     return(
-        <CartContext.Provider value={{updateStock, updateStockDelete ,cart, setCart, addToCart, removeItem, clearCart, total, count, cartCount, precioTotal}} >
+        <CartContext.Provider value={{updateStock, cart, setCart, addToCart, removeItem, clearCart, total, count, cartCount, precioTotal}} >
             {children}
         </CartContext.Provider>
     )

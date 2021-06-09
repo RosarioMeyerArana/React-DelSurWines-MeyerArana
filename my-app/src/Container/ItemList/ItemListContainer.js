@@ -13,7 +13,7 @@ const ItemListContainer = () => {
 
     const {varietal} = useParams()
 
-    const {addToCart} = useContext(CartContext)
+   // const {addToCart} = useContext(CartContext)
 
     useEffect(()=> { 
         setLoading(true)
@@ -25,35 +25,18 @@ const ItemListContainer = () => {
         .then((querySnapShot)=>{
             querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
-           const filtroVarietal = varietal ? documentos.filter((item) => item.varietal == varietal) : documentos
-          console.log(documentos)  
+           const filtroVarietal = varietal ? documentos.filter((item) => item.varietal == varietal) : documentos 
           setItem(filtroVarietal)
         })
         .catch((err) => console.log('ERROR')) 
         .finally(() => setLoading(false))       
-            
-            
-            // let listaItem = new Promise((resolve, reject) => {
-
-            //     setTimeout(()=>{
-            //        resolve(varietal ? wines.filter((item) => item.varietal == varietal) : wines)
-            //     },2000)
-
-
-            // })
-
-            // listaItem.then((res)=>{
-            //     setVinos(res)
-            // })
-
-            // listaItem.catch(() => console.log("OCURRIO UN ERROR"))
 
         },[varietal])
 
 
     return(
         <div>
-            {loading ? <div className='loader' style={{marginTop: '20%'}}> <Spinner animation="border" variant="info" /> </div> 
+            {loading ? <div className='loader' style={{marginTop: '20%'}}> <Spinner animation="border" variant="info"/> </div> 
             : 
             <ItemList productos={item}/> }
         </div>

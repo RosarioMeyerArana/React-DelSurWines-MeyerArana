@@ -11,7 +11,7 @@ const NavBar = () => {
 
     return(
         <header>
-            <Navbar fixed="top" bg="light" variant="light" className="shadow px-5">
+            <Navbar fixed="top" bg="light" variant="light" className="shadow px-5 py-3">
             <NavLink to={'/'}  className="container-logo">
             <img className="logo" src={logo} alt="" />
             </NavLink>
@@ -19,6 +19,7 @@ const NavBar = () => {
                 <NavLink to='/Malbec' activeClassName='claseActiva' className="navbar-item">Malbec</NavLink>
                 <NavLink to='/Merlot' activeClassName='claseActiva' className="navbar-item" >Merlot</NavLink>
                 <NavLink to='/Bonarda' activeClassName='claseActiva' className="navbar-item">Bonarda</NavLink>
+                <NavLink to='/Blend' activeClassName='claseActiva' className="navbar-item">Blend</NavLink>
                 <NavLink to='/Cabernet' activeClassName='claseActiva' className="navbar-item">Cabernet</NavLink>
                 <NavLink to='/Chardonnay' activeClassName='claseActiva' className="navbar-item">Chardonnay</NavLink>
                 <NavLink to='/Rosé' activeClassName='claseActiva' className="navbar-item">Rosé</NavLink>
