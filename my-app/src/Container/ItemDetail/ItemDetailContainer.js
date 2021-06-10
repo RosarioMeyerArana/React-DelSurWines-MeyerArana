@@ -24,12 +24,9 @@ const ItemDetailContainer = () => {
    const onAdd = (cantidad) => {
        addToCart(item,cantidad)
        updateStock(item.id, item.stock,cantidad)
-
     }
 
     const {id} = useParams() 
-
-     // const {varietal} = useParams()
 
     useEffect(()=> { 
         setLoading(true)
@@ -60,7 +57,6 @@ const ItemDetailContainer = () => {
                             <ItemDetail  nombre={item.nombre} bodega={item.bodega} 
                         varietal={item.varietal} precio={item.precio} notas={item.notas} onAdd={onAdd} />
                             <CounterContainer onAdd={onAdd} stock={item.stock} />
-                        { /*show && <AlertCart cantidad={cantidad} nombre={item.nombre} /> */}
                     </div>
              </div> 
              : 

@@ -25,8 +25,8 @@ const ItemListContainer = () => {
         .then((querySnapShot)=>{
             querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
-           const filtroVarietal = varietal ? documentos.filter((item) => item.varietal == varietal) : documentos 
-          setItem(filtroVarietal)
+            const filtroVarietal = varietal && documentos.filter((item) => item.varietal == varietal)
+            setItem(filtroVarietal)
         })
         .catch((err) => console.log('ERROR')) 
         .finally(() => setLoading(false))       
@@ -38,7 +38,7 @@ const ItemListContainer = () => {
         <div>
             {loading ? <div className='loader' style={{marginTop: '20%'}}> <Spinner animation="border" variant="info"/> </div> 
             : 
-            <ItemList productos={item}/> }
+            <ItemList productos={item} titulo={varietal}/> }
         </div>
         
     )

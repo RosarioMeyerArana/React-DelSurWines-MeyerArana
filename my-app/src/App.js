@@ -34,7 +34,6 @@ function App() {
               </Route>
               <Route path="/">
                   <CarouselHome/>
-                  <Favoritos/>
                   <Todos/>
               </Route>
           </Switch>

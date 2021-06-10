@@ -4,7 +4,8 @@ import {getFirestore} from '../../firebase'
 
 export const Todos = () => {
 
-    const [item, setItem] = useState({})
+    const [todos, setTodos] = useState({})
+    const [favoritos, setFavoritos] = useState({})
     const [loading, setLoading] = useState(false)
 
     useEffect(()=> { 
@@ -17,16 +18,19 @@ export const Todos = () => {
         .then((querySnapShot)=>{
             querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
-            setItem(documentos)
+            const filtroFavoritos = documentos.filter((item) => item.favorito == true) 
+            setFavoritos(filtroFavoritos)
+            setTodos(documentos)
         })
         .catch((err) => console.log('ERROR')) 
         .finally(() => setLoading(false))       
 
-        },[item])
+        },[favoritos, todos])
 
     return (
         <div>
-            <ItemList productos={item} titulo='Todos nuestros vinos'/>
+            <ItemList productos={favoritos} titulo='Los más vendidos'/>
+            <ItemList productos={todos} titulo='Todos nuestros vinos'/>
         </div>
     )
 }
