@@ -36,7 +36,7 @@ const ItemListContainer = () => {
 
     return(
         <div>
-            {loading ? <div className='loader' style={{marginTop: '20%'}}> <Spinner animation="border" variant="info"/> </div> 
+            {loading ? <div className='loader text-center' style={{marginTop: '20%', height:'100vh'}}> <Spinner animation="border" variant="info"/> </div> 
             : 
             <ItemList productos={item} titulo={varietal}/> }
         </div>
