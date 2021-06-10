@@ -5,6 +5,7 @@ import css from '../Checkout/checkout.css'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
+import {Link} from 'react-router-dom'
 
 
 const Checkout = ({datosOrder, handleSubmit, datosUser, handleCompra, orderId}) => {
@@ -91,14 +92,21 @@ const Checkout = ({datosOrder, handleSubmit, datosUser, handleCompra, orderId}) 
                 </Form>
                 {
                 orderId ? 
-                <div className='resumenPedidoId col-3 text-left' style={{marginTop: '7rem', height: '30%'}}> 
-                Tu pedido se realizó con éxito! 
-                <br/>El id de la compra es : {orderId} 
-                <hr/> {datosOrder.buyer.nombre} 
-                <br/> {datosOrder.buyer.apellido} 
-                <br/> {datosOrder.buyer.mail} 
-                <br/> {datosOrder.buyer.direccion} 
-                <br/> {datosOrder.buyer.localidad}</div> 
+                <div className='resumenPedidoId text-left col-3' style={{marginTop: '7rem', height: '40%'}}> 
+                    Tu pedido se realizó con éxito! 
+                    <br/>El id de la compra es : {orderId} 
+                    <hr/> {datosOrder.buyer.nombre} 
+                    <br/> {datosOrder.buyer.apellido} 
+                    <br/> {datosOrder.buyer.mail} 
+                    <br/> {datosOrder.buyer.direccion} 
+                    <br/> {datosOrder.buyer.localidad}
+                    <br/>
+                    <Link to='/'>
+                    <Button variant='outline-info' className='mt-3'> 
+                    Volver a la página principal
+                    </Button>
+                    </Link>
+                </div> 
                 : 
                 <div className='resumenPedido col-3 text-left' style={{marginTop: '7rem', height: '30%'}}>
                 Resumen de tu pedido:
