@@ -51,35 +51,6 @@ export const CartProvider = ({children}) => {
   }
 
 
-//   const batchUpdateStock = (cart) => {
-//     const batch = db.batch()
-//     cart.forEach(item => 
-//      { batch.update(db.collection('items').doc(item.id),
-//          {stock:firebase.firestore.FieldValue.increment( - item.cantidad)}) 
-//      });
-
-//      batch.commit()
-//      .then((res)=> { console.log(res)})
-//      .catch((err)=>{
-//        console.log(err)
-//      })
-// }
-
-    // const batchUpdateClear = (cart) => {
-    //   const batch = db.batch()
-    //     cart && cart.forEach(item => 
-    //     { batch.update(db.collection('items').doc(item.id),
-    //         {stock:firebase.firestore.FieldValue.increment( + item.cantidad)}) 
-    //     });
-
-    //     batch.commit()
-    //     .then((res)=> { console.log(res)})
-    //     .catch((err)=>{
-    //       console.log(err)
-    //     })
-    // }
-
-
     const updateStock = (itemId, itemStock, cantidad) => {
       const docRef = db.collection('items').doc(itemId)
 
@@ -89,8 +60,6 @@ export const CartProvider = ({children}) => {
 
       docRef.update({stock: stockPrevio - stockActual})
 
-      console.log(stockPrevio)
-      console.log(stockActual)
 
     } 
 

@@ -4,7 +4,6 @@ import {useParams} from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner'
 import {useCartContext} from '../../Context/cartContext'
 import CounterContainer from '../../Container/Counter/CounterContainer'
-import AlertCart from '../../Components/Alert/Alert'
 import {getFirestore} from '../../firebase'
 
 
@@ -15,10 +14,6 @@ const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(false)
 
     const {addToCart, updateStock} = useCartContext()
-
-
-    // const [cantidad , setCantidad] = useState(0)
-    // const [enStock, setEnStock] = useState(0)
 
 
    const onAdd = (cantidad) => {
@@ -36,7 +31,6 @@ const ItemDetailContainer = () => {
 
         itemsCollection.get()
         .then((querySnapShot)=>{
-            querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
             const filtroId = id ? documentos.filter((item) => item.id == id) : documentos
           
@@ -51,7 +45,7 @@ const ItemDetailContainer = () => {
     return (
         <div>
             {item ? 
-            <div className='d-flex justify-content-center row'>
+            <div className='d-flex justify-content-center row' style={{marginBottom: '5rem'}}>
                 <div className='col-5'><img className="detailImg" style={{width: '90%', marginTop:'5rem'}} src={item.image}/></div>
                     <div className='col-4 mx-5' >
                             <ItemDetail  nombre={item.nombre} bodega={item.bodega} 

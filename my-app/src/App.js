@@ -7,7 +7,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import CartProvider from './Context/cartContext'
 import {CarouselHome} from './Components/Carousel/Carousel'
 import Checkout from './Components/Checkout/Checkout'
-import {Favoritos} from './Components/Favoritos/Favoritos'
 import {Todos} from './Components/Todos/Todos'
 import {Footer} from './Components/Footer/Footer'
 

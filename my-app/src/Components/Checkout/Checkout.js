@@ -5,77 +5,21 @@ import css from '../Checkout/checkout.css'
 import { getFirestore } from '../../firebase'
 import firebase from 'firebase/app'
 import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 
 
-const Checkout = () => {
+const Checkout = (datosOrder, handleSubmit, datosUser, handleCompra, orderId) => {
 
-        const { setCart, cart, total, clearCart, batchUpdateStock} = useCartContext()
+        const { cart, total, clearCart, precioTotal} = useCartContext()
         const [validated, setValidated] = useState(false);
-        const [user, setUser] = useState({nombre: '', apellido: '', mail: '', direccion:'', localidad:'', ciudad:'' })
-        const [datosOrder, setDatosOrder] = useState({})
-        const [orderId, setOrderId] = useState('')
-        const [loading, setLoading] = useState(false)
 
-
-        const db = getFirestore()
-        const orders = db.collection('orders')
-
-        const handleSubmit = (event) => {
-          const form = event.currentTarget;
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-      
-          setValidated(true);
-        };
-      
-
-        const datosUser = (event) => {
-            event.preventDefault()
-            setUser({...user , [event.target.name]: event.target.value})
-        }
-
-        const handleCompra = (event) => {
-            event.preventDefault()
-
-            const order = {
-               date: firebase.firestore.Timestamp.fromDate(new Date()),
-               buyer: user ,
-               cart,
-               total
-           }
-           setLoading(true)
-           setDatosOrder(order)
-    
-           if(order.cart){
-           orders.add(order)
-           .then ((res)=>{
-               setOrderId(res.id)
-
-           })
-           .catch((err)=>{ console.log('error: ' ,err)})
-           .finally(()=>{
-               setLoading(false)
-               clearCart()
-                }
-               )
-            }
-       }
-
-
+        precioTotal()
        
-       
-
-
        return (
             <Container >
                <div className='d-flex justify-content-around' > 
-               <Form noValidate validated={validated} className='formCheckout col-6' onSubmit={handleSubmit} style={{marginTop: '4rem', textAlign: 'left'}}>
+               <Form noValidate validated={validated} className='formCheckout col-6' onSubmit={()=> handleSubmit()} style={{marginTop: '4rem', textAlign: 'left'}}>
                     <div className='mt-2 mb-4 ultimoPaso'>Estás a un paso de finalizar tu compra!</div>
                     <div className='ingresoDatos mb-4'>Por favor ingresa tus datos y dirección de envío:</div>
                     <Form.Row>
@@ -145,7 +89,7 @@ const Checkout = () => {
                         </Form.Control.Feedback>
                     </Form.Group>
                     </Form.Row>
-                    <Button variant='outline-info' onClick={handleCompra} className='mt-3' type="submit" >Confirmar compra</Button>
+                    <Button variant='outline-info' onClick={()=> handleCompra()} className='mt-3' type="submit" >Confirmar compra</Button>
                 </Form>
                 {
                 orderId ? 
@@ -164,7 +108,7 @@ const Checkout = () => {
                     {
                     cart && cart.map((item) => <li className='liResumen' key=''> {item.nombre} - {item.varietal} x {item.cantidad} </li>)
                     }
-                   <p className='subtotal'> Subtotal: ${total} </p>
+                   <p className='subtotal'> Total: ${total} </p>
                 </div>
                 }
             </div>

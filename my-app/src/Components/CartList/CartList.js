@@ -6,8 +6,7 @@ import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
 import { getFirestore } from '../../firebase'
 import firebase from 'firebase/app'
 import Table from 'react-bootstrap/Table'
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 export const CartList = () => {
 
@@ -23,7 +22,7 @@ export const CartList = () => {
 
 
     return (
-       <>
+       <React.Fragment>
         <Table striped bordered hover>
             <thead>
                 <tr>
@@ -44,13 +43,11 @@ export const CartList = () => {
                         <td>{item.nombre}</td>
                         <td>{item.bodega}</td>
                         <td>{item.varietal}</td>
-                        <td>{item.cantidad}
-                        </td>
+                        <td>{item.cantidad}</td>
                         <td>{item.precio}</td>
                         <td>{item.cantidad * item.precio}</td>
                         <td>
-                        <EditOutlinedIcon/>
-                        <DeleteOutlinedIcon className='botonEliminar' onClick={() => removeItem(item)} /> 
+                        <DeleteOutlinedIcon onClick={() => removeItem(item)} /> 
                         </td>
                         </tr>
                         )
@@ -73,7 +70,7 @@ export const CartList = () => {
             }
                 
             </div>
-    </> 
+    </React.Fragment> 
     )
 }
 

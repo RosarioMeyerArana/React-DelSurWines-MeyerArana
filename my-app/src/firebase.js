@@ -3,7 +3,7 @@ import 'firebase/firestore'
 
 const app = firebase.initializeApp(
     {
-        apiKey: "AIzaSyC_Zhzr7IkTTciOyprpE-PNsc7OJb6FKr8",
+        apiKey: process.env.REACT_APP_API_KEY,
         authDomain: "delsurwines-ecommerce.firebaseapp.com",
         projectId: "delsurwines-ecommerce",
         storageBucket: "delsurwines-ecommerce.appspot.com",

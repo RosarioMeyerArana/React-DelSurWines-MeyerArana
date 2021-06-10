@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded'
 import {useCartContext} from '../../Context/cartContext'
 import css from './CartWidget.css'
@@ -6,8 +6,6 @@ import css from './CartWidget.css'
 const CartWidget = () => {
 
     const {count, cartCount} = useCartContext()
-
-    localStorage.cart && JSON.parse(localStorage.cart)
 
     cartCount()
 
