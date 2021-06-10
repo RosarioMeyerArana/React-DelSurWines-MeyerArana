@@ -6,9 +6,10 @@ import ItemDetailContainer from './Container/ItemDetail/ItemDetailContainer';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import CartProvider from './Context/cartContext'
 import {CarouselHome} from './Components/Carousel/Carousel'
-import Checkout from './Components/Checkout/Checkout'
+import {CheckoutContainer} from './Container/Checkout/CheckoutContainer'
 import {Todos} from './Components/Todos/Todos'
 import {Footer} from './Components/Footer/Footer'
+
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
                   <Cart/>
               </Route>
               <Route path="/checkout">    
-                  <Checkout/>
+                  <CheckoutContainer/>
               </Route>
               <Route path="/:varietal/:id">
                   <ItemDetailContainer/>

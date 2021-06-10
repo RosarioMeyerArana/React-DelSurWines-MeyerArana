@@ -2,16 +2,14 @@ import React, {useState} from 'react'
 import Container from 'react-bootstrap/Container'
 import { useCartContext } from '../../Context/cartContext'
 import css from '../Checkout/checkout.css'
-import { getFirestore } from '../../firebase'
-import firebase from 'firebase/app'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
 
-const Checkout = (datosOrder, handleSubmit, datosUser, handleCompra, orderId) => {
+const Checkout = ({datosOrder, handleSubmit, datosUser, handleCompra, orderId}) => {
 
-        const { cart, total, clearCart, precioTotal} = useCartContext()
+        const { cart, total, precioTotal} = useCartContext()
         const [validated, setValidated] = useState(false);
 
         precioTotal()
@@ -19,7 +17,7 @@ const Checkout = (datosOrder, handleSubmit, datosUser, handleCompra, orderId) =>
        return (
             <Container >
                <div className='d-flex justify-content-around' > 
-               <Form noValidate validated={validated} className='formCheckout col-6' onSubmit={()=> handleSubmit()} style={{marginTop: '4rem', textAlign: 'left'}}>
+               <Form noValidate validated={validated} className='formCheckout col-6' onSubmit={handleSubmit} style={{marginTop: '4rem', textAlign: 'left'}}>
                     <div className='mt-2 mb-4 ultimoPaso'>Estás a un paso de finalizar tu compra!</div>
                     <div className='ingresoDatos mb-4'>Por favor ingresa tus datos y dirección de envío:</div>
                     <Form.Row>
@@ -89,7 +87,7 @@ const Checkout = (datosOrder, handleSubmit, datosUser, handleCompra, orderId) =>
                         </Form.Control.Feedback>
                     </Form.Group>
                     </Form.Row>
-                    <Button variant='outline-info' onClick={()=> handleCompra()} className='mt-3' type="submit" >Confirmar compra</Button>
+                    <Button variant='outline-info' onClick={handleCompra} className='mt-3' type="submit" >Confirmar compra</Button>
                 </Form>
                 {
                 orderId ? 

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Checkout from '../../Components/Checkout/Checkout'
+import { useCartContext } from '../../Context/cartContext'
+import {getFirestore} from '../../firebase'
+import firebase from 'firebase'
 
 export const CheckoutContainer = () => {
-
 
     const { cart, total, clearCart, precioTotal} = useCartContext()
     const [validated, setValidated] = useState(false);
@@ -58,7 +60,7 @@ export const CheckoutContainer = () => {
 
     return (
         <div>
-            <Checkout datosOrder={datosOrder} handleSubmit={handleSubmit()} datosUser={datosUser} handleCompra={handleCompra()} orderId={orderId} />
+            <Checkout datosOrder={datosOrder} validated={validated} handleSubmit={handleSubmit} datosUser={datosUser} handleCompra={handleCompra} orderId={orderId} />
         </div>
     )
 }
