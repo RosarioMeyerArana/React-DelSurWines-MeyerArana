@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import ItemList from '../ItemList/ItemList'
+import ItemList from '../../Components/ItemList/ItemList'
 import {getFirestore} from '../../firebase'
 
-export const Todos = () => {
+export const TodosContainer = () => {
 
     const [todos, setTodos] = useState({})
     const [favoritos, setFavoritos] = useState({})
@@ -16,7 +16,6 @@ export const Todos = () => {
 
         itemsCollection.get()
         .then((querySnapShot)=>{
-            querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
             const filtroFavoritos = documentos.filter((item) => item.favorito == true) 
             setFavoritos(filtroFavoritos)
@@ -30,7 +29,7 @@ export const Todos = () => {
     return (
         <div>
             <ItemList productos={favoritos} titulo='Los más vendidos'/>
-            <ItemList productos={todos} titulo='Todos nuestros vinos'/>
+            <ItemList className='mt-5' productos={todos} titulo='Todos'/>
         </div>
     )
 }

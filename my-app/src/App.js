@@ -7,7 +7,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import CartProvider from './Context/cartContext'
 import {CarouselHome} from './Components/Carousel/Carousel'
 import {CheckoutContainer} from './Container/Checkout/CheckoutContainer'
-import {Todos} from './Components/Todos/Todos'
+import {TodosContainer} from './Container/Todos/TodosContainer'
 import {Footer} from './Components/Footer/Footer'
 
 
@@ -34,7 +34,7 @@ function App() {
               </Route>
               <Route path="/">
                   <CarouselHome/>
-                  <Todos/>
+                  <TodosContainer/>
               </Route>
           </Switch>
           <Footer/>
