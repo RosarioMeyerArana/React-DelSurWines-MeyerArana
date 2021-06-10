@@ -1,7 +1,9 @@
 <h1 align="center">Hi 👋, I'm Rosario Meyer Arana</h1>
-<h3 align="center">A passionate frontend developer from Argentina living in Spain</h3>
+<h3 align="center">A passionate frontend developer from Argentina living in Barcelona</h3>
 
-- 🌱 I’m currently learning **React.js**
+
+![](delsurwinespage.gif)
+
 
 - 👨‍💻 All of my projects are available at [https://github.com/RosarioMeyerArana](https://github.com/RosarioMeyerArana)
 
