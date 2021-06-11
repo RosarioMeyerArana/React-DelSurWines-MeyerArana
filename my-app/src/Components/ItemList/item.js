@@ -8,8 +8,9 @@ const Item = ({nombre, bodega, varietal, precio, image, id}) => {
 
     return(
         <React.Fragment >
+            <div>
             <Link to={`/${varietal}/${id}`}>
-                <Card.Img variant="top" src={image} className='card' />
+                <Card.Img variant="top" src={image}  />
             </Link>   
                 <Card.Body>
                     <Card.Text className="card-bodega">{bodega.toUpperCase()}</Card.Text>
@@ -17,6 +18,7 @@ const Item = ({nombre, bodega, varietal, precio, image, id}) => {
                     <Card.Text className="card-varietal">{varietal}</Card.Text>  
                     <Card.Text>${precio}</Card.Text>
                 </Card.Body> 
+            </div>
         </React.Fragment>
     )
 }

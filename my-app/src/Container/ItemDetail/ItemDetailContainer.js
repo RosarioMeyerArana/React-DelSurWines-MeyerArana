@@ -11,8 +11,6 @@ const ItemDetailContainer = () => {
     
     const [item, setItem] = useState({})
 
-    const [loading, setLoading] = useState(false)
-
     const {addToCart, updateStock} = useCartContext()
 
 
@@ -24,7 +22,6 @@ const ItemDetailContainer = () => {
     const {id} = useParams() 
 
     useEffect(()=> { 
-        setLoading(true)
 
         const db = getFirestore()
         const itemsCollection = db.collection('items')
@@ -32,13 +29,13 @@ const ItemDetailContainer = () => {
         itemsCollection.get()
         .then((querySnapShot)=>{
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
-            const filtroId = id ? documentos.filter((item) => item.id == id) : documentos
+            const filtroId = id ? documentos.filter((item) => item.id === id) : documentos
           
           setItem(filtroId[0])
 
         })
         .catch((err) => console.log('ERROR')) 
-        .finally(() => setLoading(false))       
+        .finally(() => console.log('terminé detail'))       
         },[id])
 
 

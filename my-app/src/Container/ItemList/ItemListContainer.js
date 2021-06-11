@@ -1,7 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import ItemList from '../../Components/ItemList/ItemList';
 import {useParams} from 'react-router-dom'
-import {CartContext} from '../../Context/cartContext'
 import {getFirestore} from '../../firebase'
 import Spinner from 'react-bootstrap/Spinner'
 
@@ -13,7 +12,6 @@ const ItemListContainer = () => {
 
     const {varietal} = useParams()
 
-   // const {addToCart} = useContext(CartContext)
 
     useEffect(()=> { 
         setLoading(true)
@@ -25,11 +23,11 @@ const ItemListContainer = () => {
         .then((querySnapShot)=>{
             querySnapShot.size === 0 ? console.log('no hay items') : console.log(`hay ${querySnapShot.size} items`)
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
-            const filtroVarietal = varietal && documentos.filter((item) => item.varietal == varietal)
+            const filtroVarietal = varietal && documentos.filter((item) => item.varietal === varietal)
             setItem(filtroVarietal)
         })
         .catch((err) => console.log('ERROR')) 
-        .finally(() => setLoading(false))       
+        .finally(() => console.log('terminé itemlist'))       
 
         },[varietal])
 

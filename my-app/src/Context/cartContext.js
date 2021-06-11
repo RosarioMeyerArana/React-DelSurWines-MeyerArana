@@ -1,8 +1,6 @@
 import React, { useState , useContext, useEffect} from 'react';
-import Cart from '../Components/Cart/Cart';
 import {Notyf} from 'notyf'
 import 'notyf/notyf.min.css'
-import Link from 'react-router-dom'
 import { getFirestore } from '../firebase'
 import firebase from 'firebase/app'
 
@@ -25,7 +23,6 @@ export const CartProvider = ({children}) => {
 
 
     const db = getFirestore()
-    const orders = db.collection('orders')
 
     useEffect(()=> {
       localStorage.setItem('Cart', JSON.stringify(cart));
@@ -38,8 +35,7 @@ export const CartProvider = ({children}) => {
         }
 
 
-  //si ya esta realiza un filtro con un mapeo para solo sumar la cantidad nueva.
- 
+
   const tomoCantidad =(item,cantidad)=>{
     const filtro = [...cart];
       filtro.forEach(i => {
@@ -110,7 +106,6 @@ export const CartProvider = ({children}) => {
 
        const itemRemove =  cart.filter(i => i.id !== item.id)
        const cuantosItems = cart.reduce((acc, p) => (acc += p.cantidad), 0) 
-
 
        updateStockDelete(item.id, item.stock, item.cantidad )
 

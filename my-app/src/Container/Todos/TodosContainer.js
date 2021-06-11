@@ -6,10 +6,8 @@ export const TodosContainer = () => {
 
     const [todos, setTodos] = useState({})
     const [favoritos, setFavoritos] = useState({})
-    const [loading, setLoading] = useState(false)
 
     useEffect(()=> { 
-        setLoading(true)
 
         const db = getFirestore()
         const itemsCollection = db.collection('items')
@@ -17,19 +15,19 @@ export const TodosContainer = () => {
         itemsCollection.get()
         .then((querySnapShot)=>{
             const documentos = querySnapShot.docs.map((doc)=> {return { id: doc.id, ...doc.data() }})
-            const filtroFavoritos = documentos.filter((item) => item.favorito == true) 
+            const filtroFavoritos = documentos.filter((item) => item.favorito === true) 
             setFavoritos(filtroFavoritos)
             setTodos(documentos)
         })
         .catch((err) => console.log('ERROR')) 
-        .finally(() => setLoading(false))       
+        .finally(() => console.log('terminé todos'))       
 
-        },[favoritos, todos])
+        },[])
 
     return (
-        <div>
-            <ItemList productos={favoritos} titulo='Los más vendidos' background='#DBDEE1' color='white'/>
-            <ItemList className='mt-5' productos={todos} titulo='Todos' color='blueviolet'/>
-        </div>
+        <React.Fragment>
+            <ItemList productos={favoritos} titulo='Los más vendidos' clase='favs'/>
+            <ItemList className='mt-5' productos={todos} titulo='Todos' clase='todos'/>
+       </React.Fragment>
     )
 }

@@ -1,25 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import { useCartContext } from '../../Context/cartContext'
 import {Button} from 'react-bootstrap'
 import css from '../Cart/Cart.css';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
-import { getFirestore } from '../../firebase'
-import firebase from 'firebase/app'
 import Table from 'react-bootstrap/Table'
 import { Link } from 'react-router-dom'
 
 export const CartList = () => {
 
-    const [orderId, setOrderId] = useState('')
-    const [order, setOrder] = useState('')
-
     const { cart, clearCart, total, removeItem, precioTotal} = useCartContext()
     
     precioTotal()
-
-    const db = getFirestore()
-    const orders = db.collection('orders')
-
 
     return (
        <React.Fragment>
@@ -65,10 +56,6 @@ export const CartList = () => {
                 </Link>
                 <Button variant='outline-danger' onClick={ () => clearCart()}>Vaciar Carrito</Button>
             
-            { orderId &&
-                <div className='mt-4'> Tu pedido fue confirmado! El id de tu compra es: {orderId} </div>
-            }
-                
             </div>
     </React.Fragment> 
     )

@@ -5,7 +5,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import logo from '../../Images/logo.png';
 import {NavLink} from 'react-router-dom';
-import UserWidget from '../UserWidget/UserWidget'
 
 const NavBar = () => {
 
