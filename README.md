@@ -2,7 +2,7 @@
 <h3 align="center">A passionate frontend developer from Argentina living in Barcelona</h3>
 
 
-![](delsurwinesgif.gif)
+![](gif-baja.gif)
 
 <h3 align="left">Del Sur Wines was born as my own enterprise, in 2020 during Covid's pandemic. <br> 
 Although at the moment its not an active shop, I've thought I'd make this e-commerce while I learn React.js</h3>
