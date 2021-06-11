@@ -27,12 +27,18 @@ p{
     background-color: #DBDEE1 ;
     color:white;
     padding-bottom: 3rem;
-    padding-top: .2rem !important;
-    margin-top: 3rem !important; 
+    padding-top: 4rem !important;
+    margin-top: 5rem !important; 
     }
 
+.favs h1 {
+    margin-top: .5rem !important;
+    padding-bottom: 1rem !important;
+    text-align: center !important;
+    margin: 0 !important;
+}    
 
-.todos{
+
+.todos h1{
     color: blueviolet
-    
 }
