@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Card, Button} from 'react-bootstrap';
-import CounterContainer from '../../Container/Counter/CounterContainer';
+import React from 'react';
+import {Card} from 'react-bootstrap';
 import css from '../ItemList/Item.css';
 import {Link} from 'react-router-dom'
 
