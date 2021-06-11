@@ -4,9 +4,9 @@
 
 ![](delsurwinespage.gif)
 
-<h3 align="left">Del Sur Wines was born as my own enterprise, in 2020 during Covid's pandemic. Although at the moment its not an active shop, I've thought I'd make this e-commerce while I learn React.js</h3>
+<h3 align="left">Del Sur Wines was born as my own enterprise, in 2020 during Covid's pandemic. <br> 
+Although at the moment its not an active shop, I've thought I'd make this e-commerce while I learn React.js</h3>
 
-<hr>
 
 - 👨‍💻 You can find all of my projects available at [https://github.com/RosarioMeyerArana](https://github.com/RosarioMeyerArana)
 
