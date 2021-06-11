@@ -13,3 +13,7 @@ p{
     text-decoration: none;
     color: black;
 }
+
+.card:hover{
+    transform: scale(.1);
+}

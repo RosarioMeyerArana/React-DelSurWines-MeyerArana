@@ -28,8 +28,8 @@ export const TodosContainer = () => {
 
     return (
         <div>
-            <ItemList productos={favoritos} titulo='Los más vendidos'/>
-            <ItemList className='mt-5' productos={todos} titulo='Todos'/>
+            <ItemList productos={favoritos} titulo='Los más vendidos' background='#DBDEE1' color='white'/>
+            <ItemList className='mt-5' productos={todos} titulo='Todos' color='blueviolet'/>
         </div>
     )
 }
