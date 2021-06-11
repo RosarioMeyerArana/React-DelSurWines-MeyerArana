@@ -1,11 +1,12 @@
-<h1 align="center">Hi 👋, I'm Rosario Meyer Arana, welcome to Del Sur Wines</h1>
-<h3 align="center">I'm a passionate frontend developer from Argentina living in Barcelona</h3>
+<h1 align="center">Hi 👋, I'm Rosario Meyer Arana</h1>
+<h3 align="center">A passionate frontend developer from Argentina living in Barcelona</h3>
 
 
 ![](delsurwinespage.gif)
 
-<h3 align="center">Del Sur Wines was born as my own enterprise, in 2020 during Covid's pandemic. Although at the moment its not an active shop, I've thought I'd make this e-commerce while I learn React</h3>
+<h3 align="left">Del Sur Wines was born as my own enterprise, in 2020 during Covid's pandemic. Although at the moment its not an active shop, I've thought I'd make this e-commerce while I learn React.js</h3>
 
+<hr>
 
 - 👨‍💻 You can find all of my projects available at [https://github.com/RosarioMeyerArana](https://github.com/RosarioMeyerArana)
 
@@ -25,6 +26,13 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Dependencies
+- [React Bootstrap](https://react-bootstrap.github.io/)
+- [Material UI Icons](https://material-ui.com/es/components/material-icons/)
+- [React Router Dom](https://reactrouter.com/web/guides/quick-start)
+- [Notyf](https://carlosroso.com/notyf/)
+
 
 ## Available Scripts
 
